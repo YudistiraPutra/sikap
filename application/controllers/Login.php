@@ -6,7 +6,7 @@
     
         public function index()
         {
-            $this->load->view('loginView');
+            $this->load->view('login');
         }
 
         public function logout()
@@ -35,7 +35,7 @@
                 }
                 return true;
             }else{
-                $this->form_validation->set_message('cekDb',"login gagal");
+                $this->form_validation->set_message('cekDb',"Login Gagal");
                 return false;
             }
         }
@@ -46,7 +46,7 @@
             $this->form_validation->set_rules('username', 'Username', 'trim|required');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|callback_cekDb');
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('loginView');
+                $this->load->view('login');
             } else {
                 $session_data=$this->session->userdata('logged_in');
 
@@ -94,5 +94,10 @@
                 redirect('Login','refresh');
             }
 
-    }
+        }
+
+        public function teslogin()
+        {
+            $this->load->view('login');
+        }
 }

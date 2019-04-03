@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" href="css/vendor.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login/vendor.css">
         <!-- Theme initialization -->
         <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -16,15 +16,15 @@
             var themeName = themeSettings.themeName || '';
             if (themeName)
             {
-                document.write('<link rel="stylesheet" id="theme-style" href="css/app-' + themeName + '.css">');
+                document.write('<link rel="stylesheet" id="theme-style" href="<?php echo base_url()?>assets/css/login/app-' + themeName + '.css">');
             }
             else
             {
-                document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
+                document.write('<link rel="stylesheet" id="theme-style" href="<?php echo base_url()?>assets/css/login/app.css">');
             }
         </script>
     </head>
-    <body style="background-image:url(<?= base_url('assets/img/bg.jpg') ?>)">
+    <body style="background-image:url(<?= base_url('assets/img/login/bg.jpg') ?>)">
         <div class="auth">
             
         
@@ -43,13 +43,13 @@
                     </header>
                     <div class="auth-content">
                         <!-- <p class="text-center">Masuk</p> -->
-                        <form id="login-form" action="/index.html" method="GET" novalidate="">
+                        <?php echo form_open('Login/cekLogin'); ?>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your Username" required> </div>
+                                <input type="text" class="form-control underlined" name="username" id="username" placeholder="Username" required> </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> </div>
+                                <input type="password" class="form-control underlined" name="password" id="password" placeholder="Password" required> </div>
                             <!-- <div class="form-group">
                                 <label for="remember">
                                     <input class="checkbox" id="remember" type="checkbox">
@@ -57,9 +57,11 @@
                                 </label>
                                 <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a>
                             </div> -->
+                            <font color="Green"><?php echo validation_errors()?></font>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-block btn-primary">Login</button>
                             </div>
+                            <?php echo form_close(); ?>
                             <!-- <div class="form-group">
                                 <p class="text-muted text-center">Do not have an account?
                                     <a href="signup.html">Sign Up!</a>
@@ -100,7 +102,7 @@
             ga('create', 'UA-80463319-4', 'auto');
             ga('send', 'pageview');
         </script>
-        <script src="js/vendor.js"></script>
-        <script src="js/app.js"></script>
+        <script src="<?php echo base_url()?>assets/js/login/vendor.js"></script>
+        <script src="a<?php echo base_url()?>assets/js/login/app.js"></script>
     </body>
 </html>
