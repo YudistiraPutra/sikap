@@ -89,7 +89,7 @@
                                         <i class="fa fa-book"></i> Kebutuhan Pangan </a>
                                 </li>
                                 <li >
-                                    <a href="<?= site_url()?>pertanian/index">
+                                    <a href="<?= site_url()?>Pertanian">
                                         <i class="fa fa-book"></i> Data Pertanian </a>
                                 </li>
                                 <li >
