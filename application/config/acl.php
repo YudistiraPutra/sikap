@@ -93,7 +93,7 @@ $acl = array(
 		'Dinas Ketahanan Pangan' => false,
 		'Dinas Pertanian' => false,
 		'Dinas Peternakan' => false,
-		'Dinas Perikanan' =>false,
+		'Dinas Perikanan' => false,
 	),
 );
 

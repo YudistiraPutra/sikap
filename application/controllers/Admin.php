@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 		$session_data=$this->session->userdata('logged_in');
 		$data['username']=$session_data['username'];
 		$data['level']=$session_data['level'];
-		$this->load->view('Admin/index');
+		$this->load->view('Admin/Dashboard');
 	}
 
 	public function tambahkecamatan()
@@ -53,9 +53,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('url','form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('idkecamatan', 'ID Kecamatan', 'trim|required');
-
-		$this->form_validation->set_rules('namakecamatan', 'Nama Kecamatan', 'trim|required');
+		//kurang rule
 
 		$this->load->model('Admin_model');
 
@@ -68,6 +66,27 @@ class Admin extends CI_Controller {
 			$this->Admin_model->insertkecamatan();
 			$this->load->view('Admin/tambah_kecamatan_sukses');
 		}
+	}
+
+	public function inputpenduduk()
+	{
+		$this->load->helper('url','form');
+		$this->load->library('form_validation');
+
+		//kurang rule
+
+		$this->load->model('Admin_model');
+		$data['kecamatan'] = $this->Admin_model->getKecamatan();
+
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Admin/tambah_penduduk_view',$data);
+		}
+		else
+		{
+			$this->Admin_model->insertkecamatan();
+			$this->load->view('Admin/tambah_kecamatan_sukses');
+		}	
 	}
 
 }

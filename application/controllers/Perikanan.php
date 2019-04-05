@@ -18,8 +18,8 @@ class Perikanan extends CI_Controller {
 					//redirect('login/logout','refresh');
 					echo '<script>alert("Anda tidak memiliki hak akses untuk mengakses halaman ini")</script>';
 
-	                if($session_data['level'] == 'Dinas Perikanan'){
-	                    redirect('Perikanan','refresh');
+	                if($session_data['level'] == 'Dinas Pertanian'){
+	                    redirect('Pertanian','refresh');
 	                }
 
 	                else if($session_data['level'] == 'Dinas Peternakan'){
