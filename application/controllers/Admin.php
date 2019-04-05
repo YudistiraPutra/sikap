@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
 		}
 		else
 		{
-			$this->Admin_model->insertkecamatan();
+			$this->Admin_model->insertpenduduk();
 			$this->load->view('Admin/tambah_kecamatan_sukses');
 		}	
 	}

@@ -13,6 +13,11 @@ class Admin_model extends CI_Model {
 	{
 		$query = $this->db->query("SELECT * FROM kecamatan");
 		return $query->result();
+	}
+
+	public function insertpenduduk()
+	{
+		
 	}	
 
 }
