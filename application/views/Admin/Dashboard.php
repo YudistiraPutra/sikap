@@ -86,7 +86,21 @@
                                 </li>
                                 <li >
                                     <a href="kebutuhan-pangan.php">
-                                        <i class="fa fa-book"></i> Kebutuhan Pangan </a>
+                                        <i class="fa fa-book"></i> Kebutuhan Pangan
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="items-list.html"> Data Kecamatan </a>
+                                        </li>
+                                        <li>
+                                            <a href="item-editor.html"> Data Jumlah Penduduk </a>
+                                        </li>
+                                        <li>
+                                            <a href="item-editor.html"> Data Kebutuhan Pangan </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li >
                                     <a href="<?= site_url()?>Pertanian">
