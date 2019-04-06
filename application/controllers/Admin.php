@@ -38,6 +38,10 @@ class Admin extends CI_Controller {
 		else{
 			redirect('Login','refresh');
 		}
+
+		$this->load->model("Admin_model");
+        $this->load->library('form_validation');
+        $this->load->library('session');
 	}
 	
 	public function index()
@@ -51,27 +55,32 @@ class Admin extends CI_Controller {
 	public function kecamatan()
 	{
 		//dashboard kecamatan
-		$this->load->view('Admin/kecamatan');
+		$data['kecamatan'] = $this->Admin_model->getAll();
+		$this->load->view('Admin/kecamatan',$data);
 	}
 
 	public function tambahkecamatan()
 	{
-		$this->load->helper('url','form');
-		$this->load->library('form_validation');
+		$kecamatan = $this->Admin_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($kecamatan->rules());
 
-		//kurang rule
+        if ($validation->run()) {
+            $kecamatan->save();
+            $this->session->set_flashdata('flash','disimpan');
+            redirect('Admin/kecamatan','refresh');
+        }
 
-		$this->load->model('Admin_model');
+        $this->load->view("admin/form_kecamatan");
+	}
 
-		if($this->form_validation->run() == False)
-		{
-			$this->load->view('Admin/tambah_kecamatan_view');
-		}
-		else
-		{
-			$this->Admin_model->insertkecamatan();
-			$this->load->view('Admin/tambah_kecamatan_sukses');
-		}
+	public function hapuskecamatan($id)
+	{       
+	    if ($this->Admin_model->delete($id)) 
+	    {
+	    	$this->session->set_flashdata('flash','dihapus');
+	        redirect('Admin/kecamatan','refresh');
+	    }
 	}
 
 	public function inputpenduduk()
@@ -93,13 +102,6 @@ class Admin extends CI_Controller {
 			$this->Admin_model->insertpenduduk();
 			$this->load->view('Admin/tambah_kecamatan_sukses');
 		}	
-	}
-
-	public function datatabelkecamatan()
-	{
-		//panggil model untuk json
-	 	$this->load->model('Admin_model');
-	 	$this->Admin_model->dtbkecamatan();
 	}
 
 	public function viewkecamatan()

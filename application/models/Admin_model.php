@@ -3,55 +3,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
 
-	public function insertkecamatan()
-	{
-		$object = array('kec_id' => $this->input->post('idkecamatan'), 'kec_nama'=> $this->input->post('namakecamatan'));
-		$this->db->insert('kecamatan',$object);
-	}
+	private $_table = "kecamatan";
 
-	public function getkecamatan()
-	{
-		$query = $this->db->query("SELECT * FROM kecamatan");
-		return $query->result();
-	}
+    public $kec_id;
+    public $kec_nama;
+
+    public function rules()
+    {
+        return [
+            ['field' => 'kec_id',
+            'label' => 'kec_id',
+            'rules' => 'required'],
+
+            ['field' => 'kec_nama',
+            'label' => 'kec_nama',
+            'rules' => 'required']
+        ];
+    }
+
+    public function getAll()
+    {
+        return $this->db->get($this->_table)->result();
+    }
+    
+    public function save()
+    {
+        $post = $this->input->post();
+        $this->kec_id = $post["kec_id"];
+        $this->kec_nama = $post["kec_nama"];
+        $this->db->insert($this->_table, $this);
+    }
+
+
+    public function delete($id)
+    {
+        return $this->db->delete($this->_table, array("kec_id" => $id));
+    }
+
 
 	public function insertpenduduk()
 	{
 		
 	}
-
-	public function dtbkecamatan()
-	{
-      $draw = intval($this->input->get("draw"));
-      $start = intval($this->input->get("start"));
-      $length = intval($this->input->get("length"));
-
-
-      $query = $this->db->get("kecamatan");
-
-
-      $data = [];
-
-
-      foreach($query->result() as $r) {
-           $data[] = array(
-                $r->kec_id,
-                $r->kec_nama
-           );
-      }
-
-
-      $result = array(
-               "draw" => $draw,
-                 "recordsTotal" => $query->num_rows(),
-                 "recordsFiltered" => $query->num_rows(),
-                 "data" => $data
-            );
-
-
-      echo json_encode($result);
-      exit();
-	}	
 
 }
 
