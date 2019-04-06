@@ -18,6 +18,39 @@ class Admin_model extends CI_Model {
 	public function insertpenduduk()
 	{
 		
+	}
+
+	public function dtbkecamatan()
+	{
+      $draw = intval($this->input->get("draw"));
+      $start = intval($this->input->get("start"));
+      $length = intval($this->input->get("length"));
+
+
+      $query = $this->db->get("kecamatan");
+
+
+      $data = [];
+
+
+      foreach($query->result() as $r) {
+           $data[] = array(
+                $r->kec_id,
+                $r->kec_nama
+           );
+      }
+
+
+      $result = array(
+               "draw" => $draw,
+                 "recordsTotal" => $query->num_rows(),
+                 "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+
+
+      echo json_encode($result);
+      exit();
 	}	
 
 }

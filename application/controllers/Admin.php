@@ -48,6 +48,12 @@ class Admin extends CI_Controller {
 		$this->load->view('Admin/Dashboard');
 	}
 
+	public function kecamatan()
+	{
+		//dashboard kecamatan
+		$this->load->view('Admin/kecamatan');
+	}
+
 	public function tambahkecamatan()
 	{
 		$this->load->helper('url','form');
@@ -87,6 +93,19 @@ class Admin extends CI_Controller {
 			$this->Admin_model->insertpenduduk();
 			$this->load->view('Admin/tambah_kecamatan_sukses');
 		}	
+	}
+
+	public function datatabelkecamatan()
+	{
+		//panggil model untuk json
+	 	$this->load->model('Admin_model');
+	 	$this->Admin_model->dtbkecamatan();
+	}
+
+	public function viewkecamatan()
+	{
+		//tes datatabel kecamatan yang fix
+		$this->load->view('Admin/tabelkecamatan');
 	}
 
 }

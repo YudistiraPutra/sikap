@@ -92,7 +92,7 @@
                                         
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="items-list.html"> Data Kecamatan </a>
+                                            <a href="<?php echo site_url()?>Admin/kecamatan"> Data Kecamatan </a>
                                         </li>
                                         <li>
                                             <a href="item-editor.html"> Data Jumlah Penduduk </a>
