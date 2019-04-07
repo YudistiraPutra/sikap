@@ -49,7 +49,7 @@
 
   			<div class="form-group">
 				<label for="">Jumlah Penduduk</label>
-				<input type="number" class="form-control" id="jumlahpenduduk" name="jumlahpenduduk" placeholder="Masukkan Jumlah Penduduk">
+				<input type="number" class="form-control" id="pend_jml" name="pend_jml" placeholder="Masukkan Jumlah Penduduk">
 			</div>
 		
 			<button type="submit" class="btn btn-primary">Submit</button>

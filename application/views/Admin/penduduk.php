@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <!-- Theme initialization -->
         <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -29,6 +30,15 @@
         </script>
     </head>
     <body>
+
+        <!--Untuk sweet alert-->
+        <div class="flash-data" data-flashdata="<?=$this->session->flashdata('flash'); ?>"></div>
+        <?php if ($this->session->flashdata('flash')) : ?>
+
+
+        <?php endif;?>
+        <!-- end of sweetalert -->
+
         <div class="main-wrapper">
             <div class="app" id="app">
                 <header class="header">
@@ -196,36 +206,41 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Kecamatan </h3>
+                        <h3 class="title"> Data Penduduk </h3>
+
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                     <section class="section">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
-                                        <?php echo form_open('Admin/tambahkecamatan'); ?>
                                         <div class="card-title-block">
-                                            <h3 class="title"> Form Tambah Kecamatan </h3>
+                                            <h3 class="title"> Tabel Data Penduduk </h3>
                                         </div>
+                                        <div class="col-8">
+                                            <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-info">Tambah Data Penduduk</button></a>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> ID Kecamatan: </label>
-                                            <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" id="kec_id" name="kec_id" placeholder=""> </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
-                                            <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" id="kec_nama" name="kec_nama" placeholder=""> </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-10 col-sm-offset-2">
-                                                <button type="submit" class="btn btn-primary"> Simpan </button>
-                                            </div>
-                                        </div>
-                                        <?php echo form_close(); ?>
+                                          <table id="table_id" class="display">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nama Kecamatan</th>
+                                                            <th>Tahun</th>
+                                                            <th>Jumlah Penduduk</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                       <?php foreach ($penduduk as $key) { 
+                                                                ?>
+                                                            <tr>
+                                                                <td><?php echo $key->kec_nama ?></td>
+                                                                <td><?php echo $key->pend_thn ?></td>
+                                                                <td><?php echo $key->pend_jml ?></td>
+                                                                <td><a href="<?php echo base_url()?>Admin/updatependuduk/<?php echo $key->pend_id ?>" class="btn btn-warning" role="button">Update</a></td>
+                                                                <td><a href="<?php echo base_url()?>Admin/hapuspenduduk/<?php echo $key->pend_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                    </tbody>
+                                                </table>
                                 </div>
                             </div>
                         </div>
@@ -259,6 +274,7 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
+
         <script>
             (function(i, s, o, g, r, a, m)
             {
@@ -276,19 +292,30 @@
             ga('create', 'UA-80463319-4', 'auto');
             ga('send', 'pageview');
         </script>
-        <script type="text/javascript">
+
+        <script>
         $(document).ready(function() {
-        $('#item-list').DataTable({
-            "ajax": {
-            url : "datatabelkecamatan",
-            type : 'GET'
-            },
-        });
-        });
+    $('#table_id').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'Tambah Data',
+                action: function ( e, dt, node, config ) {
+                    window.location = "tambahpenduduk"  
+                }
+            }
+        ]
+    } );
+} );
         </script>
+
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
+        <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
+        <script src=<?= base_url()?>/assets/js/myscript.js></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+        
     </body>
 </html>

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
         <!-- Theme initialization -->
         <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -196,28 +197,39 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Kecamatan </h3>
+                        <h3 class="title"> Data Penduduk </h3>
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                     <section class="section">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
-                                        <?php echo form_open('Admin/tambahkecamatan'); ?>
+                                        <?php echo form_open('Admin/tambahpenduduk'); ?>
                                         <div class="card-title-block">
-                                            <h3 class="title"> Form Tambah Kecamatan </h3>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> ID Kecamatan: </label>
-                                            <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" id="kec_id" name="kec_id" placeholder=""> </div>
+                                            <h3 class="title"> Form Tambah Penduduk </h3>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
+                                            <div class="form-group row">
+                                                      <select class="form-control" id="pend_kec_id" name="pend_kec_id">
+                                                        <?php foreach ($kecamatan as $key) { ?>
+                                                            <option value="<?php echo $key->kec_id?>"><?php echo $key->kec_nama ?></option>
+                                                        <?php } ?>
+                                                      </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data : </label>
                                             <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" id="kec_nama" name="kec_nama" placeholder=""> </div>
+                                            <input class="date-own form-control" style="width: 300px;" type="text" name="pend_thn" id='pend_thn'> </div>
+                                        </div>
+
+                                         <div class="form-group row">
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
+                                            <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="pend_jml" name="pend_jml" placeholder="Masukkan Jumlah Penduduk">
                                         </div>
 
                                         <div class="form-group row">
@@ -286,6 +298,12 @@
         });
         });
         </script>
+        <script type="text/javascript">
+                $('.date-own').datepicker({
+                minViewMode: 2,
+                format: 'yyyy'
+                });
+            </script>
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>

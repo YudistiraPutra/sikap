@@ -95,7 +95,7 @@
                                             <a href="<?php echo site_url()?>Admin/kecamatan"> Data Kecamatan </a>
                                         </li>
                                         <li>
-                                            <a href="item-editor.html"> Data Jumlah Penduduk </a>
+                                            <a href="<?php echo site_url()?>Admin/penduduk"> Data Jumlah Penduduk </a>
                                         </li>
                                         <li>
                                             <a href="item-editor.html"> Data Kebutuhan Pangan </a>

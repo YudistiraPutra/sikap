@@ -65,7 +65,8 @@ class Admin extends CI_Controller {
         $validation = $this->form_validation;
         $validation->set_rules($kecamatan->rules());
 
-        if ($validation->run()) {
+        if ($validation->run()) 
+        {
             $kecamatan->save();
             $this->session->set_flashdata('flash','disimpan');
             redirect('Admin/kecamatan','refresh');
@@ -81,6 +82,29 @@ class Admin extends CI_Controller {
 	    	$this->session->set_flashdata('flash','dihapus');
 	        redirect('Admin/kecamatan','refresh');
 	    }
+	}
+
+	public function penduduk()
+	{
+		//dashboard penduduk
+		$data['penduduk'] = $this->Admin_model->getAllpenduduk();
+		$this->load->view('Admin/penduduk',$data);
+	}
+
+	public function tambahpenduduk()
+	{
+		$model = $this->Admin_model;
+        $validation = $this->form_validation;
+        $data['kecamatan'] = $model->getAll();
+
+        if ($validation->run()) 
+        {
+            $model->savependuduk();
+            $this->session->set_flashdata('flash','disimpan');
+            redirect('Admin/penduduk','refresh');
+        }
+
+        $this->load->view("admin/form_penduduk",$data);
 	}
 
 	public function inputpenduduk()
