@@ -6,9 +6,10 @@
         <title>Login </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
+         <link rel="icon" href="<?php echo base_url()?>assets/assetshome/img/core-img/icon.png">
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/vendor.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
         <!-- Theme initialization -->
         <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -59,7 +60,11 @@
                             </div> -->
                             <font color="Green"><?php echo validation_errors()?></font>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-primary">Login</button>
+                                <button type="submit" class="btn btn-block btn-primary">Masuk</button>
+                            </div>
+                             <div class="form-group">
+                                <a href="<?=site_url ()?>welcome" class="btn btn-block btn-danger">Kembali
+                                </a>
                             </div>
                             <?php echo form_close(); ?>
                             <!-- <div class="form-group">

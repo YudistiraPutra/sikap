@@ -71,43 +71,27 @@
                                     <span class="l l3"></span>
                                     <span class="l l4"></span>
                                     <span class="l l5"></span>
-                                </div> Halaman Admin </div>
+                                </div> SIKAP-Kab Malang </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li class="active">
                                     <a href="Dashboard.php">
-                                        <i class="fa fa-home"></i> Dashboard </a>
+                                        <i class="fa fa-home"></i> Ketersediaan Pangan Kabupaten Malang </a>
                                 </li>
                                 <li >
                                     <a href="kebutuhan-pangan.php">
-                                        <i class="fa fa-book"></i> Kebutuhan Pangan
-                                        <i class="fa arrow"></i> 
+                                        <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Pertanian
+                                       
                                     </a>
-                                        
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="<?php echo site_url()?>Admin/kecamatan"> Data Kecamatan </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo site_url()?>Admin/penduduk"> Data Jumlah Penduduk </a>
-                                        </li>
-                                        <li>
-                                            <a href="item-editor.html"> Data Kebutuhan Pangan </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li >
                                     <a href="<?= site_url()?>Pertanian">
-                                        <i class="fa fa-book"></i> Data Pertanian </a>
+                                        <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Perikanan & Peternakan </a>
                                 </li>
                                 <li >
                                     <a href="Data-peternakan.php">
-                                        <i class="fa fa-book"></i> Data Peternakan </a>
-                                </li>
-                                <li >
-                                    <a href="Data-perikanan.php">
-                                        <i class="fa fa-book"></i> Data Perikanan </a>
+                                        <i class="fa fa-book"></i> Peramalan Ketersediaan Pangan Kabupaten Malang</a>
                                 </li>
                                 
                                 <!-- <li>
