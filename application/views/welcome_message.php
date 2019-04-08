@@ -189,7 +189,7 @@
                                         
                                     </a>
                                     <div class="portfolio-hover-overlay">
-                                            <a href="<?=site_url ()?>grafik" class="post-title justify-content-center">
+                                            <a href="<?=site_url ()?>Grafik" class="post-title justify-content-center">
                                                 <div class="port-hover-text">
                                                     <h3>GRAFIK KETERSEDIAAN PANGAN</h3>
                                                     <h5>KABUPATEN MALANG</h5>
