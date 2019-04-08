@@ -76,11 +76,11 @@
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                <li >
-                                    <a href="<?= site_url()?>hal-grafik">
+                                    <a href="<?= site_url()?>Grafik/index">
                                         <i class="fa fa-home"></i> Ketersediaan Pangan Kabupaten Malang </a>
                                 </li>
                                 <li class="active">
-                                    <a href="<?= site_url()?>pangan-pertanian">
+                                    <a href="<?= site_url()?>Grafik/pangan_pertanian">
                                         <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Pertanian
                                        
                                     </a>

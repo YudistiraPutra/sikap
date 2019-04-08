@@ -8,6 +8,11 @@ class Grafik extends CI_Controller {
 		$this->load->view('Grafik/hal-grafik');
 	}
 
+	public function pangan_pertanian()
+	{
+		$this->load->view('Grafik/pangan-pertanian');
+	}
+
 }
 
 /* End of file Grafik.php */

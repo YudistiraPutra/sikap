@@ -76,21 +76,21 @@
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href="<?= site_url()?>Grafik/hal-grafik">
+                                    <a href="<?= site_url()?>Grafik/index">
                                         <i class="fa fa-home"></i> Ketersediaan Pangan Kabupaten Malang </a>
                                 </li>
                                 <li >
-                                    <a href="<?= site_url()?>Grafik/pangan-pertanian">
+                                    <a href="<?= site_url()?>Grafik/pangan_pertanian">
                                         <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Pertanian
                                        
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="<?= site_url()?>pangan-perikan-peternak">
+                                    <a href="<?= site_url()?>pangan_perikan-peternak">
                                         <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Perikanan & Peternakan </a>
                                 </li>
                                 <li >
-                                    <a href="Data-peramalan.php">
+                                    <a href="Dat-peramalan.php">
                                         <i class="fa fa-book"></i> Peramalan Ketersediaan Pangan Kabupaten Malang</a>
                                 </li>
                                  <li >
