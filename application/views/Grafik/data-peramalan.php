@@ -50,7 +50,7 @@
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div>
-                                    <span class="name"> Roy achmad </span>
+                                    <span class="name"> Roy Achmad </span>
                                 </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="#">
@@ -78,7 +78,7 @@
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                                <li class="active">
+                               <li >
                                     <a href="<?= site_url()?>Grafik/index">
                                         <i class="fa fa-home"></i> Ketersediaan Pangan Kabupaten Malang </a>
                                 </li>
@@ -89,17 +89,18 @@
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="<?= site_url()?>pangan_perikan-peternak">
+                                    <a href="<?= site_url()?>Grafik/pangan_perikan_peternak">
                                         <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Perikanan & Peternakan </a>
                                 </li>
-                                <li >
-                                    <a href="Dat-peramalan.php">
+                                <li class="active">
+                                    <a href="<?= site_url()?>Grafik/peramalan">
                                         <i class="fa fa-book"></i> Peramalan Ketersediaan Pangan Kabupaten Malang</a>
                                 </li>
-                                 <li >
+                                <li >
                                    <a href="<?=site_url ()?>welcome" class="btn btn-block btn-danger">Kembali
                                 </a>
                                 </li>
+                               
                             </ul>
                         </nav>
                     </div>
@@ -109,34 +110,20 @@
                 <div class="mobile-menu-handle"></div>
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Grafik Ketersediaan Pangan </h3>
+                        <h3 class="title"> Peramalan Ketersediaan Pangan Kabupaten Malang </h3>
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                     <section class="section">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Ketersediaan Pangan </h3>
+                                            <h3 class="title"> Peramalan Ketersediaan Pangan Kabupaten Malang </h3>
                                         </div>
                                         <section class="example">
                                             <div class="flot-chart">
-                                                <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
-                                            <h3 class="title"> Line Cahrt Example </h3>
-                                        </div>
-                                        <section class="example">
-                                            <div class="flot-chart">
-                                                <div class="flot-chart-content" id="flot-line-chart"></div>
+                                                <div class="flot-chart-content" id="flot-line-chart-multi"></div>
                                             </div>
                                         </section>
                                     </div>
@@ -150,7 +137,7 @@
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Responsive simple </h3>
+                                            <h3 class="title"> Tabel Ketersediaan Pangan Komoditi Pertanian</h3>
                                         </div>
                                         <section class="example">
                                             <div class="table-responsive">

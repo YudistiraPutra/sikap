@@ -6,6 +6,7 @@
         <title> Ketahanan pangan </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="icon" href="<?php echo base_url()?>assets/assetshome/img/core-img/icon.png">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
         <!-- Place favicon.ico in the root directory -->
         <!-- <link rel="stylesheet" href="css/vendor.css"> -->
@@ -65,13 +66,15 @@
                     <div class="sidebar-container">
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="logo">
+                                <!-- <div class="logo">
                                     <span class="l l1"></span>
                                     <span class="l l2"></span>
                                     <span class="l l3"></span>
                                     <span class="l l4"></span>
                                     <span class="l l5"></span>
-                                </div> SIKAP-Kab Malang </div>
+                                </div> -->
+                                 <img src="<?php echo base_url()?>assets/assetshome/img/core-img/logo5.png" alt=""> 
+                             </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
@@ -86,12 +89,16 @@
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="<?= site_url()?>pangan-perikan-peternak">
+                                    <a href="<?= site_url()?>Grafik/pangan_perikan_peternak">
                                         <i class="fa fa-book"></i> Ketersediaan Pangan Komoditi Perikanan & Peternakan </a>
                                 </li>
                                 <li >
-                                    <a href="Data-peramalan.php">
+                                    <a href="<?= site_url()?>Grafik/peramalan">
                                         <i class="fa fa-book"></i> Peramalan Ketersediaan Pangan Kabupaten Malang</a>
+                                </li>
+                                <li >
+                                   <a href="<?=site_url ()?>welcome" class="btn btn-block btn-danger">Kembali
+                                </a>
                                 </li>
                                 
                                 <!-- <li>
@@ -172,66 +179,20 @@
                 <div class="mobile-menu-handle"></div>
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Statik Ketahanan Pangan </h3>
+                        <h3 class="title"> Data Ketersediaan Pangan Komoditi Pertanian </h3>
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                     <section class="section">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Bar Chart Example </h3>
+                                            <h3 class="title"> Bar Chart </h3>
                                         </div>
                                         <section class="example">
                                             <div class="flot-chart">
                                                 <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
-                                            <h3 class="title"> Line Cahrt Example </h3>
-                                        </div>
-                                        <section class="example">
-                                            <div class="flot-chart">
-                                                <div class="flot-chart-content" id="flot-line-chart"></div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="section">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
-                                            <h3 class="title"> Pie Chart Example </h3>
-                                        </div>
-                                        <section class="example">
-                                            <div class="flot-chart">
-                                                <div class="flot-chart-pie-content" id="flot-pie-chart"></div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="card-title-block">
-                                            <h3 class="title"> Live Chart Example </h3>
-                                        </div>
-                                        <section class="example">
-                                            <div class="flot-chart">
-                                                <div class="flot-chart-content" id="flot-line-chart-moving"></div>
                                             </div>
                                         </section>
                                     </div>
@@ -245,11 +206,61 @@
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Multiple Axes Line Chart Example </h3>
+                                            <h3 class="title"> Tabel Ketersediaan Pangan Komoditi Pertanian</h3>
                                         </div>
                                         <section class="example">
-                                            <div class="flot-chart">
-                                                <div class="flot-chart-content" id="flot-line-chart-multi"></div>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Table heading</th>
+                                                            <th>Table heading</th>
+                                                            <th>Table heading</th>
+                                                            <th>Table heading</th>
+                                                            <th>Table heading</th>
+                                                            <th>Table heading</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                            <td>Table cell</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </section>
                                     </div>
@@ -258,242 +269,7 @@
                         </div>
                     </section>
                 </article>
-                    <section class="section">
-                        <div class="row sameheight-container">
-                            <div class="col-xl-8">
-                                <div class="card sameheight-item items" data-exclude="xs,sm,lg">
-                                    <div class="card-header bordered">
-                                        <div class="header-block">
-                                            <h3 class="title"> Items </h3>
-                                            <a href="item-editor.html" class="btn btn-primary btn-sm"> Add new </a>
-                                        </div>
-                                        <div class="header-block pull-right">
-                                            <label class="search">
-                                                <input class="search-input" placeholder="search...">
-                                                <i class="fa fa-search search-icon"></i>
-                                            </label>
-                                            <div class="pagination">
-                                                <a href="" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-angle-up"></i>
-                                                </a>
-                                                <a href="" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="item-list striped">
-                                        <li class="item item-list-header">
-                                            <div class="item-row">
-                                                <div class="item-col item-col-header fixed item-col-img xs"></div>
-                                                <div class="item-col item-col-header item-col-title">
-                                                    <div>
-                                                        <span>Name</span>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-header item-col-sales">
-                                                    <div>
-                                                        <span>Sales</span>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-header item-col-stats">
-                                                    <div class="no-overflow">
-                                                        <span>Stats</span>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-header item-col-date">
-                                                    <div>
-                                                        <span>Published</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 12 Myths Uncovered About IT &amp; Software </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 4958 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 50% of things doesn&#x27;t really belongs to you </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 192 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/eduardo_olv/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> Vestibulum tincidunt amet laoreet mauris sit sem aliquam cras maecenas vel aliquam. </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 2143 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/why_this/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 10 tips of Object Oriented Design </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 124 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/w7download/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> Sometimes friend tells it is cold </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 10214 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/pankogut/128.jpg)"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> New ways of conceptual thinking </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading">Sales</div>
-                                                    <div> 3217 </div>
-                                                </div>
-                                                <div class="item-col item-col-stats">
-                                                    <div class="item-heading">Stats</div>
-                                                    <div class="no-overflow">
-                                                        <div class="item-stats sparkline" data-type="bar"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading">Published</div>
-                                                    <div> 21 SEP 10:45 </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </section>
+                    
                     <!-- <section class="section map-tasks">
                         <div class="row sameheight-container">
                             <div class="col-md-8">

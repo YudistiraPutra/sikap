@@ -33,14 +33,16 @@
             <div class="auth-container">
                 <div class="card">
                     <header class="auth-header">
-                        <h1 class="auth-title">
-                            <div class="logo">
-                                <span class="l l1"></span>
-                                <span class="l l2"></span>
-                                <span class="l l3"></span>
+                        <!-- <h1 class="auth-title">
+                            <div class="logo"> -->
+
+                               <!--  <span class="l l1"></span>
+                                <span class="l l2"></span> -->
+                              <!--   <span class="l l3"></span>
                                 <span class="l l4"></span>
-                                <span class="l l5"></span>
-                            </div> Ketahanan Pangan </h1>
+                                <span class="l l5"></span> -->
+                            <!-- </div> Ketahanan Pangan </h1> -->
+                             <img src="<?php echo base_url()?>assets/assetshome/img/core-img/logo4.png" alt="">
                     </header>
                     <div class="auth-content">
                         <!-- <p class="text-center">Masuk</p> -->

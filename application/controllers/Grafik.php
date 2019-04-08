@@ -12,6 +12,14 @@ class Grafik extends CI_Controller {
 	{
 		$this->load->view('Grafik/pangan-pertanian');
 	}
+	public function pangan_perikan_peternak()
+	{
+		$this->load->view('Grafik/pangan-perikan-peternak');
+	}
+	public function peramalan()
+	{
+		$this->load->view('Grafik/data-peramalan');
+	}
 
 }
 

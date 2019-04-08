@@ -89,7 +89,7 @@
                 <!-- Single Hero Post -->
                 <div class="single-hero-post bg-overlay">
                     <!-- Post Image -->
-                    <div class="slide-img bg-img" style="background-image: url(<?php echo base_url()?>assets/assetshome/img/bg-img/21.png);"></div>
+                    <div class="slide-img bg-img" style="background-image: url(<?php echo base_url()?>assets/assetshome/img/bg-img/2.jpg);"></div>
                     <div class="container h-50">
                         <div class="row h-100 align-items-center">
                             <div class="col-12">
