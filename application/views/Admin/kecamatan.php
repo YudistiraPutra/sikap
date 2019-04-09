@@ -223,20 +223,23 @@
                                           <table id="table_id" class="display">
                                                     <thead>
                                                         <tr>
+                                                            <th>No.</th>
                                                             <th>ID Kecamatan</th>
                                                             <th>Nama Kecamatan</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
+                                                    <?php $i = 1 ?>
                                                     <tbody>
                                                        <?php foreach ($kecamatan as $key) { 
                                                                 ?>
                                                             <tr>
+                                                                <td><?php echo $i?></td>
                                                                 <td><?php echo $key->kec_id ?></td>
                                                                 <td><?php echo $key->kec_nama?></td>
                                                                 <td><a href="<?php echo base_url()?>Admin/hapuskecamatan/<?php echo $key->kec_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
                                                             </tr>
-                                                            <?php } ?>
+                                                            <?php  $i=$i+1; } ?>
                                                     </tbody>
                                                 </table>
                                 </div>
@@ -291,19 +294,9 @@
             ga('send', 'pageview');
         </script>
 
-        <script>
-        $(document).ready(function() {
-    $('#table_id').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                text: 'Tambah Data',
-                action: function ( e, dt, node, config ) {
-                    window.location = "tambahkecamatan"  
-                }
-            }
-        ]
-    } );
+<script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
 } );
         </script>
 
