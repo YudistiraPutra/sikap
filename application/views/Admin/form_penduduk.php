@@ -200,7 +200,7 @@
                         <h3 class="title"> Data Penduduk </h3>
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
-                    <section class="section">
+                      <section class="section">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
@@ -209,27 +209,30 @@
                                             <h3 class="title"> Form Tambah Penduduk </h3>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
-                                            <div class="form-group row">
-                                                      <select class="form-control" id="pend_kec_id" name="pend_kec_id">
-                                                        <?php foreach ($kecamatan as $key) { ?>
-                                                            <option value="<?php echo $key->kec_id?>"><?php echo $key->kec_nama ?></option>
-                                                        <?php } ?>
-                                                      </select>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 form-control-label text-xs-right">Nama Kecamatan: </label>
+                                            <div class="col-sm-10">
+                                                 <select class="form-control" name="pend_kec_id">
+                                                  <option value=''>--Pilih--</option>
+                                                  <?php foreach ($kecamatan as $key) { ;?>
+                                                         <option value="<?php echo $key->kec_id; ?>"><?php echo $key->kec_nama ?></option>
+                                                   <?php } ?>
+                                                </select>
                                             </div>
+                                             <?php echo form_error('pend_kec_id'); ?>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data : </label>
-                                            <div class="col-sm-10">
-                                            <input class="date-own form-control" style="width: 300px;" type="text" name="pend_thn" id='pend_thn'> </div>
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data: </label>
                                         </div>
+                                        <input class="date-own form-control" style="width: 300px;" type="text" name='pend_thn'>
+                                         <?php echo form_error('pend_thn'); ?>
 
-                                         <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Penduduk: </label>
                                             <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="pend_jml" name="pend_jml" placeholder="Masukkan Jumlah Penduduk">
+                                            <input type="number" class="form-control boxed" id="pend_jml" name="pend_jml" placeholder=""> </div>
+                                            <?php echo form_error('pend_jml'); ?>
                                         </div>
 
                                         <div class="form-group row">

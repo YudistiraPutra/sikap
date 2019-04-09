@@ -84,6 +84,8 @@ class Admin extends CI_Controller {
 	    }
 	}
 
+	//mulai bawah sini form mulai ada rule dan fix
+
 	public function penduduk()
 	{
 		//dashboard penduduk
@@ -93,39 +95,62 @@ class Admin extends CI_Controller {
 
 	public function tambahpenduduk()
 	{
-		$model = $this->Admin_model;
-        $validation = $this->form_validation;
-        $data['kecamatan'] = $model->getAll();
+		$this->load->helper('url','form');
+		$this->load->library('form_validation');
 
-        if ($validation->run()) 
-        {
-            $model->savependuduk();
-            $this->session->set_flashdata('flash','disimpan');
-            redirect('Admin/penduduk','refresh');
-        }
+		$this->load->model('Admin_model');
+		$data['kecamatan'] = $this->Admin_model->getAll();
 
-        $this->load->view("admin/form_penduduk",$data);
+		$this->form_validation->set_rules('pend_jml','Jumlah Penduduk','required');
+		$this->form_validation->set_rules('pend_thn','Tahun Data','required');
+		$this->form_validation->set_rules('pend_kec_id','Nama Kecamatan','required');
+
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Admin/form_penduduk',$data);
+		}
+		else
+		{
+			$this->Admin_model->savependuduk();
+			$data['penduduk'] = $this->Admin_model->getAllpenduduk();
+			$this->session->set_flashdata('flash','disimpan');
+			$this->load->view('Admin/penduduk',$data);
+		}	
+        
 	}
 
-	public function inputpenduduk()
+	public function editdatapenduduk($id)
 	{
 		$this->load->helper('url','form');
 		$this->load->library('form_validation');
 
-		//kurang rule
-
 		$this->load->model('Admin_model');
-		$data['kecamatan'] = $this->Admin_model->getKecamatan();
+
+		$this->form_validation->set_rules('pend_jml','Jumlah Penduduk','required');
+		$this->form_validation->set_rules('pend_thn','Tahun Data','required');
 
 		if($this->form_validation->run() == False)
 		{
-			$this->load->view('Admin/tambah_penduduk_view',$data);
+			$data['penduduk'] = $this->Admin_model->getpendudukbyid($id);
+			$this->load->view('Admin/edit_penduduk',$data);
 		}
 		else
 		{
-			$this->Admin_model->insertpenduduk();
-			$this->load->view('Admin/tambah_kecamatan_sukses');
+			$this->Admin_model->editdatapenduduk($id);
+			$this->session->set_flashdata('flash','diupdate');
+			redirect('Admin/penduduk','refresh');
+			
+			
 		}	
+        
+	}
+
+	public function hapusdatapenduduk($id)
+	{
+	    $this->load->model('Admin_model');
+	    $this->Admin_model->hapusdatapenduduk($id);       
+	    $this->session->set_flashdata('flash','dihapus');
+	    redirect('Admin/penduduk','refresh');
 	}
 
 	public function viewkecamatan()

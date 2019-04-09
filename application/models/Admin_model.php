@@ -46,25 +46,38 @@ class Admin_model extends CI_Model {
 		return $query->result();
     }
 
-    public function savependuduk()
+    public function getpendudukbyid($id)
     {
-        // $post = $this->input->post();
-        // $this->pend_kec_id = $post["pend_kec_id"];
-        // $this->pend_thn = $post["pend_thn"];
-        // $this->pend_jml = $post["pend_jml"];
-        // $this->db->insert("data_penduduk", $this);
-
-        // $object = array('pend_kec_id' => $this->input->post('pend_kec_id'), 'pend_jml' => $this->input->post('pend_jml'), 'pend_thn' => $this->input->post('pend_thn'));
-        $object = array('pend_kec_id' => "PGK", 'pend_jml' => 3000, 'pend_thn' => "2011");
-         $this->db->insert('data_penduduk', $object);
+        $query = $this->db->query("Select * FROM data_penduduk as p INNER JOIN kecamatan as k ON p.pend_kec_id=k.kec_id WHERE pend_id = ".$id);
+        return $query->result();
     }
 
+    public function savependuduk()
+    {
+       $data = array(
+                   'pend_jml' => $this->input->post('pend_jml'),
+                   'pend_thn' => $this->input->post('pend_thn'),
+                   'pend_kec_id' => $this->input->post('pend_kec_id')
+                );
+       $this->db->insert('data_penduduk', $data);
+    }
 
-	public function insertpenduduk()
-	{
-		
-	}
+    public function editdatapenduduk($id)
+    {
+        $data = array(
+            'pend_jml' => $this->input->post('pend_jml'),
+            'pend_thn' => $this->input->post('pend_thn'),
+        );
+    
+        $this->db->where('pend_id', $id);
+        $this->db->update('data_penduduk', $data);
+    }
 
+    public function hapusdatapenduduk($id)
+    {
+        $this->db->where('pend_id', $id);
+        $this->db->delete('data_penduduk');
+    }
 }
 
 /* End of file Admin_model.php */
