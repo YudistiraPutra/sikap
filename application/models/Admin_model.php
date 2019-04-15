@@ -78,6 +78,66 @@ class Admin_model extends CI_Model {
         $this->db->where('pend_id', $id);
         $this->db->delete('data_penduduk');
     }
+
+
+    public function getdatakonsumsibyid($id)
+    {
+        $query = $this->db->query("Select * FROM data_konsumsi WHERE kons_id = ".$id);
+		return $query->result();
+    }
+
+    public function caridatakonsumsibaru($no)
+    {
+        $query = $this->db->query("SELECT * FROM `data_konsumsi` WHERE kons_id =".$no);
+		return $query->result();
+    }
+
+    public function getkomoditipertanian()
+    {
+    	$query = $this->db->query("SELECT d.det_kmd_id,d.det_kmd_nama FROM `komoditas` as k inner join detil_komoditas as d on d.komoditas_kmd_id = k.kmd_id where k.kategori_kat_id = 1");
+		return $query->result();
+    }
+
+    public function getkonsumsipertanian()
+    {
+    	$query = $this->db->query("SELECT dk.kons_id, dk.kons_jml, dk.kons_bulan, dk.kons_thn, kec.kec_nama, d.det_kmd_nama FROM data_konsumsi as dk inner join detil_komoditas as d on dk.kons_det_kmd_id = d.det_kmd_id inner join komoditas as k on k.kmd_id = d.komoditas_kmd_id inner join kecamatan as kec on dk.kons_kec_id=kec.kec_id where k.kategori_kat_id = 1");
+		return $query->result();
+    }
+
+    public function savekonsumsipertanian()
+    {
+        // $norow = 0;
+        // $nulltes = null;
+
+        // while(sizeof($nulltes) == 0){
+        //     $norow = $norow + 1;
+        //     $nulltes = $this->caridatakonsumsibaru($norow);
+        // } 
+
+       $data = array(
+                   'kons_id' => $norow,                
+                   'kons_jml' => $this->input->post('kons_jml'),
+                   'kons_bulan' => $this->input->post('kons_bulan'),
+                   'kons_thn' => $this->input->post('kons_thn'),
+                   'kons_kec_id' => $this->input->post('kons_kec_id'),
+                   'kons_det_kmd_id' => $this->input->post('kons_det_kmd_id'),
+                );
+       $this->db->insert('data_konsumsi', $data);
+    }
+
+    public function editkonsumsipertanian($id)
+    {
+        $data = array(               
+            'kons_jml' => $this->input->post('kons_jml'),
+            'kons_bulan' => $this->input->post('kons_bulan'),
+            'kons_thn' => $this->input->post('kons_thn'),
+            'kons_kec_id' => $this->input->post('kons_kec_id'),
+            'kons_det_kmd_id' => $this->input->post('kons_det_kmd_id'),
+         );
+    
+        $this->db->where('kons_id', $id);
+        $this->db->update('data_konsumsi', $data);
+    }
 }
 
 /* End of file Admin_model.php */

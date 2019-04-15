@@ -159,6 +159,77 @@ class Admin extends CI_Controller {
 		$this->load->view('Admin/tabelkecamatan');
 	}
 
+
+
+	//mulai halaman pertanian
+	public function komoditas_pertanian()
+	{
+		$this->load->model('Admin_model');
+		$data['komoditi'] = $this->Admin_model->getkomoditipertanian();
+		$this->load->view('Admin/list_komoditi_pertanian',$data);
+	}
+
+	public function konsumsi_pertanian()
+	{
+		$this->load->model('Admin_model');
+		$data['konsumsi'] = $this->Admin_model->getkonsumsipertanian();
+		$this->load->view('Admin/konsumsi_pertanian',$data);
+	}
+
+	public function tambah_konsumsi_pertanian()
+	{
+		$this->load->helper('url','form');
+		$this->load->library('form_validation');
+
+		$this->load->model('Admin_model');
+		$data['kecamatan'] = $this->Admin_model->getAll();
+		$data['komoditas'] = $this->Admin_model->getkomoditipertanian();
+
+		$this->form_validation->set_rules('kons_kec_id','Nama Kecamatan','required');
+		$this->form_validation->set_rules('kons_det_kmd_id','Jenis Komoditi','required');
+		$this->form_validation->set_rules('kons_bulan','Bulan','required');
+		$this->form_validation->set_rules('kons_thn','Tahun','required');
+		$this->form_validation->set_rules('kons_jml','Jumlah Komoditi','required');
+		
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Admin/form_konsumsi_pertanian',$data);
+		}
+		else
+		{
+			$this->Admin_model->savekonsumsipertanian();
+			$this->session->set_flashdata('flash','disimpan');
+			$this->konsumsi_pertanian();
+		}	      
+	}
+
+	public function edit_konsumsi_pertanian($id)
+	{
+		$this->load->helper('url','form');
+		$this->load->library('form_validation');
+
+		$this->load->model('Admin_model');
+
+		$this->form_validation->set_rules('kons_kec_id','Nama Kecamatan','required');
+		$this->form_validation->set_rules('kons_det_kmd_id','Jenis Komoditi','required');
+		$this->form_validation->set_rules('kons_bulan','Bulan','required');
+		$this->form_validation->set_rules('kons_thn','Tahun','required');
+		$this->form_validation->set_rules('kons_jml','Jumlah Komoditi','required');
+
+		if($this->form_validation->run() == False)
+		{
+			$data['konsumsi'] = $this->Admin_model->getdatakonsumsibyid($id);
+			$this->load->view('Admin/edit_konsumsi_pertanian',$data);
+		}
+		else
+		{
+			$this->Admin_model->editkonsumsipertanian($id);
+			$this->session->set_flashdata('flash','diupdate');
+			redirect('Admin/konsumsi_pertanian','refresh');
+		}	
+        
+	}
+
 }
 
 /* End of file Diskehan.php */
