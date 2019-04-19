@@ -86,10 +86,9 @@ class Admin_model extends CI_Model {
 		return $query->result();
     }
 
-    public function caridatakonsumsibaru($no)
+    public function caridatakonsumsibaru()
     {
-        $query = $this->db->query("SELECT * FROM `data_konsumsi` WHERE kons_id =".$no);
-		return $query->result();
+        
     }
 
     public function getkomoditipertanian()
@@ -104,18 +103,10 @@ class Admin_model extends CI_Model {
 		return $query->result();
     }
 
-    public function savekonsumsipertanian()
+    public function savekonsumsipertanian($id)
     {
-        // $norow = 0;
-        // $nulltes = null;
-
-        // while(sizeof($nulltes) == 0){
-        //     $norow = $norow + 1;
-        //     $nulltes = $this->caridatakonsumsibaru($norow);
-        // } 
-
        $data = array(
-                   'kons_id' => $norow,                
+                   'kons_id' => $id,              
                    'kons_jml' => $this->input->post('kons_jml'),
                    'kons_bulan' => $this->input->post('kons_bulan'),
                    'kons_thn' => $this->input->post('kons_thn'),
@@ -137,6 +128,12 @@ class Admin_model extends CI_Model {
     
         $this->db->where('kons_id', $id);
         $this->db->update('data_konsumsi', $data);
+    }
+
+    public function newrowkonsumsi($i)
+    {
+        $query = $this->db->query("Select kons_id FROM data_konsumsi WHERE kons_id =".$i);
+        return $query->result();
     }
 }
 

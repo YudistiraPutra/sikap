@@ -159,7 +159,24 @@ class Admin extends CI_Controller {
 		$this->load->view('Admin/tabelkecamatan');
 	}
 
+	//fungsi cari row kosong pada konsumsi
+	public function carirowkosongkonsumsi()
+	{
+		$this->load->model('Admin_model');
+		
+		$i = 1;
+		$x = 1;
+		
+		while($x != 0)
+		{
+			$data = $this->Admin_model->newrowkonsumsi($i);
+			$x = count($data);
+			$i++;
+		}
 
+		$i = $i - 1;
+		return $i;
+	}
 
 	//mulai halaman pertanian
 	public function komoditas_pertanian()
@@ -191,13 +208,15 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('kons_thn','Tahun','required');
 		$this->form_validation->set_rules('kons_jml','Jumlah Komoditi','required');
 		
+		
 		if($this->form_validation->run() == False)
 		{
 			$this->load->view('Admin/form_konsumsi_pertanian',$data);
 		}
 		else
 		{
-			$this->Admin_model->savekonsumsipertanian();
+			$barisbaru = $this->carirowkosongkonsumsi();
+			$this->Admin_model->savekonsumsipertanian($barisbaru);
 			$this->session->set_flashdata('flash','disimpan');
 			$this->konsumsi_pertanian();
 		}	      
@@ -227,9 +246,7 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('flash','diupdate');
 			redirect('Admin/konsumsi_pertanian','refresh');
 		}	
-        
 	}
-
 }
 
 /* End of file Diskehan.php */
