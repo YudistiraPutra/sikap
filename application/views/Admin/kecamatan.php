@@ -77,18 +77,14 @@
                     <div class="sidebar-container">
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="logo">
-                                    <span class="l l1"></span>
-                                    <span class="l l2"></span>
-                                    <span class="l l3"></span>
-                                    <span class="l l4"></span>
-                                    <span class="l l5"></span>
-                                </div> Halaman Admin </div>
+                                <!-- <div class="logo"> -->
+                                    <img src="<?php echo base_url()?>assets/assetshome/img/core-img/logo5.png">
+                                </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li >
-                                    <a href="Dashboard.php">
+                                    <a href="<?php echo site_url()?>Admin/index">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li class="active" >
