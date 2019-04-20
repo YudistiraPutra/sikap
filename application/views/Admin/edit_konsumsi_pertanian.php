@@ -206,13 +206,13 @@
                                     <div class="card-block">
                                         <?php echo form_open('Admin/tambah_konsumsi_pertanian'); ?>
                                         <div class="card-title-block">
-                                            <h3 class="title"> Edit Tambah Konsumsi Pertanian </h3>
+                                            <h3 class="title"> Edit Konsumsi Pertanian </h3>
                                         </div>
 
                                           <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right">Nama Kecamatan: </label>
                                             <div class="col-sm-10">
-                                                 <select class="form-control" name="kons_kec_id">
+                                                 <select class="form-control" name="kons_kec_id" id="kons_kecamatan">
                                                   <option value=''>--Pilih--</option>
                                                   <?php foreach ($kecamatan as $key) { ;?>
                                                          <option value="<?php echo $key->kec_id; ?>"><?php echo $key->kec_nama ?></option>
@@ -225,7 +225,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right">Jenis Komoditas: </label>
                                             <div class="col-sm-10">
-                                                 <select class="form-control" name="kons_det_kmd_id">
+                                                 <select class="form-control" name="kons_det_kmd_id" id="kons_komoditas">
                                                   <option value=''>--Pilih--</option>
                                                   <?php foreach ($komoditas as $key) { ;?>
                                                          <option value="<?php echo $key->det_kmd_id; ?>"><?php echo $key->det_kmd_nama ?></option>
@@ -238,8 +238,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right">Bulan: </label>
                                             <div class="col-sm-10">
-                                                 <select class="form-control" name="kons_bulan">
-                                                  <option value=''>--Pilih--</option>
+                                                <select class="form-control" name="kons_bulan" id="kons_bulan">
                                                   <option value='Januari'>Januari</option>
                                                   <option value='Februari'>Februari</option>
                                                   <option value='Maret'>Maret</option>
@@ -260,13 +259,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data: </label>
                                         </div>
-                                        <input class="date-own form-control" style="width: 300px;" type="text" name="kons_thn">
+                                        <input class="date-own form-control" style="width: 300px;" type="text" name="kons_thn" value="<?php echo $konsumsi[0]->kons_thn; ?>">
                                          <?php echo form_error("kons_thn"); ?>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Konsumsi: </label>
                                             <div class="col-sm-10">
-                                            <input type="number" class="form-control boxed" name="kons_jml" placeholder=""> </div>
+                                            <input type="number" class="form-control boxed" name="kons_jml" placeholder="" value="<?php echo $konsumsi[0]->kons_jml ?>"> </div>
                                             <?php echo form_error('kons_jml'); ?>
                                         </div>
 
@@ -341,7 +340,23 @@
                 minViewMode: 2,
                 format: 'yyyy'
                 });
-            </script>
+        </script>
+        <script type = "text/javascript">
+            //javascript set option selected
+            let selectedkonsumsi = <?php echo json_encode($konsumsi[0]->kons_bulan); ?>;
+            let selectedkecamatan = <?php echo json_encode($konsumsi[0]->kons_kec_id); ?>;
+            let selectedkomoditas = <?php echo json_encode($konsumsi[0]->kons_det_kmd_id); ?>
+            
+            //cari element by id
+            const varkonsumsi = document.getElementById('kons_bulan');
+            const varkecamatan = document.getElementById('kons_kecamatan');
+            const varkomoditas = document.getElementById('kons_komoditas');
+
+            //set value dari option
+            varkonsumsi.value = selectedkonsumsi;
+            varkecamatan.value = selectedkecamatan;
+            varkomoditas.value = selectedkomoditas;
+        </script>
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>

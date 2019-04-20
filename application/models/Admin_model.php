@@ -82,13 +82,8 @@ class Admin_model extends CI_Model {
 
     public function getdatakonsumsibyid($id)
     {
-        $query = $this->db->query("Select * FROM data_konsumsi WHERE kons_id = ".$id);
+        $query = $this->db->query("SELECT dk.kons_id, dk.kons_jml, dk.kons_bulan,dk.kons_thn, dk.kons_kec_id, dk.kons_det_kmd_id, k.kec_nama, dko.det_kmd_nama FROM data_konsumsi as dk inner join kecamatan as k on k.kec_id = dk.kons_kec_id inner join detil_komoditas as dko on dko.det_kmd_id= dk.kons_det_kmd_id where dk.kons_id =".$id);
 		return $query->result();
-    }
-
-    public function caridatakonsumsibaru()
-    {
-        
     }
 
     public function getkomoditipertanian()
@@ -128,6 +123,12 @@ class Admin_model extends CI_Model {
     
         $this->db->where('kons_id', $id);
         $this->db->update('data_konsumsi', $data);
+    }
+
+    public function hapusdatakonsumsipertanian($id)
+    {
+        $this->db->where('kons_id', $id);
+        $this->db->delete('data_konsumsi');
     }
 
     public function newrowkonsumsi($i)

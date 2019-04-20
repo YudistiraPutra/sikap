@@ -244,7 +244,7 @@
                                                                 <td><?php echo $key->kons_thn ?></td>
                                                                 <td><?php echo $key->kons_jml ?></td>
                                                                 <td><a href="<?php echo base_url()?>Admin/edit_konsumsi_pertanian/<?php echo $key->kons_id ?>" class="btn btn-warning" role="button">Update</a>
-                                                                <a href="<?php echo base_url()?>Admin/hapusdatapenduduk/<?php echo $key->kons_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
+                                                                <a href="<?php echo base_url()?>Admin/hapus_konsumsi_pertanian/<?php echo $key->kons_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
                                                             </tr>
                                                             <?php $i=$i+1; } ?>
                                                     </tbody>
@@ -310,7 +310,7 @@
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
-        <script src=<?= base_url()?>/assets/js/scriptpenduduk.js></script>
+        <script src=<?= base_url()?>/assets/js/konsumsi_pertanian.js></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>

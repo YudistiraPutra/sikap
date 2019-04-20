@@ -237,6 +237,8 @@ class Admin extends CI_Controller {
 
 		if($this->form_validation->run() == False)
 		{
+			$data['komoditas'] = $this->Admin_model->getkomoditipertanian();
+			$data['kecamatan'] = $this->Admin_model->getAll();
 			$data['konsumsi'] = $this->Admin_model->getdatakonsumsibyid($id);
 			$this->load->view('Admin/edit_konsumsi_pertanian',$data);
 		}
@@ -246,6 +248,14 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('flash','diupdate');
 			redirect('Admin/konsumsi_pertanian','refresh');
 		}	
+	}
+
+	public function hapus_konsumsi_pertanian($id)
+	{
+	    $this->load->model('Admin_model');
+	    $this->Admin_model->hapusdatakonsumsipertanian($id);       
+	    $this->session->set_flashdata('flash','dihapus');
+	    redirect('Admin/konsumsi_pertanian','refresh');
 	}
 }
 
