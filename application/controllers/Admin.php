@@ -257,6 +257,9 @@ class Admin extends CI_Controller {
 	    $this->session->set_flashdata('flash','dihapus');
 	    redirect('Admin/konsumsi_pertanian','refresh');
 	}
+
+	//mulai halaman data komoditas pertanian
+	
 }
 
 /* End of file Diskehan.php */

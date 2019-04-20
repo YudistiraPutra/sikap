@@ -116,12 +116,40 @@
                                     </ul>
                                 </li>
                                 <li >
-                                    <a href="Data-peternakan.php">
-                                        <i class="fa fa-book"></i> Data Peternakan </a>
+                                    <a href="kebutuhan-pangan.php">
+                                        <i class="fa fa-book"></i> Data Peternakan
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/komoditas_peternakan"> Komoditas Peternakan </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/konsumsi_peternakan"> Data Konsumsi Peternakan </a>
+                                        </li>
+                                        <li>
+                                            <a href="item-editor.html"> Data Komoditas Peternakan </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li >
-                                    <a href="Data-perikanan.php">
-                                        <i class="fa fa-book"></i> Data Perikanan </a>
+                                    <a href="kebutuhan-pangan.php">
+                                        <i class="fa fa-book"></i> Data Perikanan
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/komoditas_pertanian"> Komoditas Perikanan </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/konsumsi_pertanian"> Data Konsumsi Perikanan </a>
+                                        </li>
+                                        <li>
+                                            <a href="item-editor.html"> Data Komoditas Perikanan </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 
                                 <!-- <li>
