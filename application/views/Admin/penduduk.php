@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Data Kecamatan</title>
+        <title> Data Penduduk</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -11,7 +11,8 @@
         <!-- <link rel="stylesheet" href="css/vendor.css"> -->
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/vendor.css">
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/> -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <!-- Theme initialization -->
@@ -92,11 +93,11 @@
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                                <li class="active">
+                                <li>
                                     <a href="Dashboard.php">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
-                                <li >
+                                <li class="active">
                                     <a href="kebutuhan-pangan.php">
                                         <i class="fa fa-book"></i> Kebutuhan Pangan
                                         <i class="fa arrow"></i> 
@@ -106,7 +107,7 @@
                                         <li>
                                             <a href="<?php echo site_url()?>Admin/kecamatan"> Data Kecamatan </a>
                                         </li>
-                                        <li>
+                                        <li class="active">
                                             <a href="<?php echo site_url()?>Admin/penduduk"> Data Jumlah Penduduk </a>
                                         </li>
                                         <li>
@@ -217,10 +218,10 @@
                                         <div class="card-title-block">
                                             <h3 class="title"> Tabel Data Penduduk </h3>
                                         </div>
-                                        <div class="col-8">
-                                            <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-info">Tambah Data Penduduk</button></a>
+                                        <div class=".col-12 .col-sm-6 .col-md-8">
+                                            <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-primary">Tambah Data Penduduk</button></a>
 
-                                          <table id="table_id" class="display">
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>
@@ -307,9 +308,9 @@
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
         <script src=<?= base_url()?>/assets/js/scriptpenduduk.js></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-        
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script> -->
+        <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+         -->
     </body>
 </html>

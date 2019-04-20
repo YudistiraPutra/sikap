@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Data Kecamatan</title>
+        <title> Data Penduduk</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -220,13 +220,15 @@
                                                 </select>
                                             </div>
                                              <?php echo form_error('pend_kec_id'); ?>
-                                        </div>
+                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data: </label>
-                                        </div>
-                                        <input class="date-own form-control" style="width: 300px;" type="text" name='pend_thn'>
+                                            <div class="col-sm-10">
+                                                <input class="date-own form-control" style="width: 300px;" type="text" name='pend_thn'>
+                                            </div>
                                          <?php echo form_error('pend_thn'); ?>
+                                     </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Penduduk: </label>
@@ -303,8 +305,9 @@
         </script>
         <script type="text/javascript">
                 $('.date-own').datepicker({
-                minViewMode: 2,
-                format: 'yyyy'
+                // minViewMode: 2,
+                format: 'yyyy',
+                autoclose: true
                 });
             </script>
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>

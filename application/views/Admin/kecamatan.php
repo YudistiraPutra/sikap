@@ -11,7 +11,7 @@
         <!-- <link rel="stylesheet" href="css/vendor.css"> -->
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/vendor.css">
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <!-- Theme initialization -->
@@ -66,11 +66,6 @@
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="#">
                                         <i class="fa fa-user icon"></i> Profile </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-bell icon"></i> Notifications </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-gear icon"></i> Settings </a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login.html">
                                         <i class="fa fa-power-off icon"></i> Logout </a>
                                 </div>
@@ -92,18 +87,18 @@
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                                <li class="active">
+                                <li >
                                     <a href="Dashboard.php">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
-                                <li >
+                                <li class="active" >
                                     <a href="kebutuhan-pangan.php">
                                         <i class="fa fa-book"></i> Kebutuhan Pangan
                                         <i class="fa arrow"></i> 
                                     </a>
                                         
                                     <ul class="sidebar-nav">
-                                        <li>
+                                        <li class="active">
                                             <a href="<?php echo site_url()?>Admin/kecamatan"> Data Kecamatan </a>
                                         </li>
                                         <li>
@@ -217,10 +212,11 @@
                                         <div class="card-title-block">
                                             <h3 class="title"> Tabel Kecamatan </h3>
                                         </div>
-                                        <div class="col-8">
-                                            <a href="<?php base_url()?>tambahkecamatan"><button type="button" class="btn btn-info">Tambah Kecamatan</button></a>
-
-                                          <table id="table_id" class="display">
+                                        <div class="col-12">
+                                            <a href="<?php base_url()?>tambahkecamatan"><button type="button" class="btn btn-primary">Tambah Kecamatan</button></a>
+                                        
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
+                                            
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>
@@ -229,6 +225,7 @@
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
+
                                                     <?php $i = 1 ?>
                                                     <tbody>
                                                        <?php foreach ($kecamatan as $key) { 
@@ -304,9 +301,9 @@
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
         <script src=<?= base_url()?>/assets/js/myscript.js></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-        
+         -->
     </body>
 </html>

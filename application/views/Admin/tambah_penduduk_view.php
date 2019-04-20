@@ -40,13 +40,7 @@
 				<input class="date-own form-control" style="width: 300px;" type="text" name="tahunpenduduk" id='tahunpenduduk'>
 			</div>
 
-			<script type="text/javascript">
-      			$('.date-own').datepicker({
-         		minViewMode: 2,
-         		format: 'yyyy'
-       			});
-  			</script>
-
+			
   			<div class="form-group">
 				<label for="">Jumlah Penduduk</label>
 				<input type="number" class="form-control" id="pend_jml" name="pend_jml" placeholder="Masukkan Jumlah Penduduk">
@@ -62,6 +56,15 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  		<script src="Hello World"></script>
+ 		<script type="text/javascript">
+      			$('.date-own').datepicker({
+         		// minViewMode: 2,
+         		format: 'yyyy',
+         		autoclose: true
+       			});
+       			
+  			</script>
+
 
 	</body>
 </html>
