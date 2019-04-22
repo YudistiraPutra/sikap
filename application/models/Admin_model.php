@@ -86,6 +86,7 @@ class Admin_model extends CI_Model {
 		return $query->result();
     }
 
+    //mulai model pertanian
     public function getkomoditipertanian()
     {
     	$query = $this->db->query("SELECT d.det_kmd_id,d.det_kmd_nama FROM `komoditas` as k inner join detil_komoditas as d on d.komoditas_kmd_id = k.kmd_id where k.kategori_kat_id = 1");
@@ -135,6 +136,12 @@ class Admin_model extends CI_Model {
     {
         $query = $this->db->query("Select kons_id FROM data_konsumsi WHERE kons_id =".$i);
         return $query->result();
+    }
+
+    public function getdatakomoditaspertanian()
+    {
+    	$query = $this->db->query("SELECT dko.det_kmd_nama, kec.kec_nama, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.bulan, dk.tahun, dk.ketersediaan FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id where k.kategori_kat_id = 1");
+		return $query->result();
     }
 }
 

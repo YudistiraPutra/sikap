@@ -259,6 +259,44 @@ class Admin extends CI_Controller {
 	}
 
 	//mulai halaman data komoditas pertanian
+	public function data_komoditas_pertanian()
+	{
+		$this->load->model('Admin_model');
+		$data['data_komoditas'] = $this->Admin_model->getdatakomoditaspertanian();
+		$this->load->view('Admin/data_komoditas_pertanian',$data);
+	}
+
+	public function tambah_komoditas_pertanian()
+	{
+		$this->load->helper('url','form');
+		$this->load->library('form_validation');
+
+		$this->load->model('Admin_model');
+		$data['kecamatan'] = $this->Admin_model->getAll();
+		$data['komoditas'] = $this->Admin_model->getkomoditipertanian();
+
+		$this->form_validation->set_rules('det_kem_id','Nama Komoditi','required');
+		$this->form_validation->set_rules('kec_id','Nama Kecamatan','required');
+		$this->form_validation->set_rules('tanam','Jumlah Tanam','required');
+		$this->form_validation->set_rules('panen','Jumlah Panen','required');
+		$this->form_validation->set_rules('provitas','Jumlah Provitas','required');
+		$this->form_validation->set_rules('produksi','Jumlah Produksi','required');
+		$this->form_validation->set_rules('ketersediaan','Jumlah Ketersediaan','required');
+		$this->form_validation->set_rules('bulan','Nama Bulan','required');
+		$this->form_validation->set_rules('tahun','Nama Tahun','required');
+		
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Admin/form_komoditas_pertanian',$data);
+		}
+		else
+		{
+			$barisbaru = $this->carirowkosongkonsumsi();
+			$this->Admin_model->savekonsumsipertanian($barisbaru);
+			$this->session->set_flashdata('flash','disimpan');
+			$this->data_komoditas_pertanian();
+		}	      
+	}
 	
 }
 
