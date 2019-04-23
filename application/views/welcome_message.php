@@ -96,7 +96,7 @@
                                 <!-- Post Content -->
                                 <div class="hero-slides-content text-center">
                                     <h2>Selamat Datang di Website Ketersediaan Pangan</h2>
-                                    <h2>Kabupaten Malang</h2>
+                                    <h2>Dinas Ketahanan Pangan Kabupaten Malang</h2>
                                 </div>
                             </div>
                         </div>
