@@ -67,11 +67,6 @@
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="#">
                                         <i class="fa fa-user icon"></i> Profile </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-bell icon"></i> Notifications </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-gear icon"></i> Settings </a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login.html">
                                         <i class="fa fa-power-off icon"></i> Logout </a>
                                 </div>
@@ -111,9 +106,23 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li >
-                                    <a href="<?= site_url()?>Pertanian">
-                                        <i class="fa fa-book"></i> Data Pertanian </a>
+                               <li >
+                                    <a href="kebutuhan-pangan.php">
+                                        <i class="fa fa-book"></i> Data Pertanian
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/komoditas_pertanian"> Komoditas Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/konsumsi_pertanian"> Data Konsumsi Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/data_komoditas_pertanian"> Data Komoditas Pertanian </a> 
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li >
                                     <a href="Data-peternakan.php">

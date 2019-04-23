@@ -11,7 +11,7 @@
         <!-- <link rel="stylesheet" href="css/vendor.css"> -->
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/vendor.css">
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/app.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <!-- Theme initialization -->
@@ -81,19 +81,15 @@
                 <aside class="sidebar">
                     <div class="sidebar-container">
                         <div class="sidebar-header">
-                            <div class="brand">
-                                <div class="logo">
-                                    <span class="l l1"></span>
-                                    <span class="l l2"></span>
-                                    <span class="l l3"></span>
-                                    <span class="l l4"></span>
-                                    <span class="l l5"></span>
-                                </div> Halaman Admin </div>
+                           <div class="brand">
+                                <!-- <div class="logo"> -->
+                                    <img src="<?php echo base_url()?>assets/assetshome/img/core-img/logo5.png">
+                                </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                                <li class="active">
-                                    <a href="Dashboard.php">
+                                <li>
+                                    <a href="<?php echo site_url()?>Admin/index">
                                         <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li >
@@ -114,9 +110,23 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li >
-                                    <a href="<?= site_url()?>Pertanian">
-                                        <i class="fa fa-book"></i> Data Pertanian </a>
+                                <li class="active">
+                                    <a href="kebutuhan-pangan.php">
+                                        <i class="fa fa-book"></i> Data Pertanian
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/komoditas_pertanian"> Komoditas Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/konsumsi_pertanian"> Data Konsumsi Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/data_komoditas_pertanian"> Data Komoditas Pertanian </a> 
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li >
                                     <a href="Data-peternakan.php">
@@ -127,75 +137,6 @@
                                         <i class="fa fa-book"></i> Data Perikanan </a>
                                 </li>
                                 
-                                <!-- <li>
-                                    <a href="">
-                                        <i class="fa fa-th-large"></i> Items Manager
-                                        <i class="fa arrow"></i>
-                                    </a>
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="items-list.html"> Items List </a>
-                                        </li>
-                                        <li>
-                                            <a href="item-editor.html"> Item Editor </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-area-chart"></i> Charts
-                                        <i class="fa arrow"></i>
-                                    </a>
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="charts-flot.html"> Flot Charts </a>
-                                        </li>
-                                        <li>
-                                            <a href="charts-morris.html"> Morris Charts </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-table"></i> Tables
-                                        <i class="fa arrow"></i>
-                                    </a>
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="static-tables.html"> Static Tables </a>
-                                        </li>
-                                        <li>
-                                            <a href="responsive-tables.html"> Responsive Tables </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="forms.html">
-                                        <i class="fa fa-pencil-square-o"></i> Forms </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-desktop"></i> UI Elements
-                                        <i class="fa arrow"></i>
-                                    </a>
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="buttons.html"> Buttons </a>
-                                        </li>
-                                        <li>
-                                            <a href="cards.html"> Cards </a>
-                                        </li>
-                                        <li>
-                                            <a href="typography.html"> Typography </a>
-                                        </li>
-                                        <li>
-                                            <a href="icons.html"> Icons </a>
-                                        </li>
-                                        <li>
-                                            <a href="grid.html"> Grid </a>
-                                        </li>
-                                    </ul>
-                                </li> -->
                             </ul>
                         </nav>
                     </div>
@@ -206,7 +147,7 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Penduduk </h3>
+                        <h3 class="title"> Data Komoditas Pertanian </h3>
 
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
@@ -215,9 +156,9 @@
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Tabel Data Penduduk </h3>
+                                            <h3 class="title"> Tabel Data Konsumsi Pertanian</h3>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-12">
                                             <a href="<?php base_url()?>tambah_konsumsi_pertanian"><button type="button" class="btn btn-info">Tambah Data Konsumsi</button></a>
 
                                           <table id="table_id" class="display">
@@ -311,9 +252,9 @@
         <script src="<?php echo base_url()?>assets/js/app.js"></script>
         <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
         <script src=<?= base_url()?>/assets/js/konsumsi_pertanian.js></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script> -->
         
     </body>
 </html>

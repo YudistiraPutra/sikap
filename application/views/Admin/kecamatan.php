@@ -105,9 +105,23 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li >
-                                    <a href="<?= site_url()?>Pertanian">
-                                        <i class="fa fa-book"></i> Data Pertanian </a>
+                               <li >
+                                    <a href="kebutuhan-pangan.php">
+                                        <i class="fa fa-book"></i> Data Pertanian
+                                        <i class="fa arrow"></i> 
+                                    </a>
+                                        
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/komoditas_pertanian"> Komoditas Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/konsumsi_pertanian"> Data Konsumsi Pertanian </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo site_url()?>Admin/data_komoditas_pertanian"> Data Komoditas Pertanian </a> 
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li >
                                     <a href="Data-peternakan.php">
