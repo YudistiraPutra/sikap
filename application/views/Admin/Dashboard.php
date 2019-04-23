@@ -107,7 +107,7 @@
                                             <a href="<?php echo site_url()?>Admin/konsumsi_pertanian"> Data Konsumsi Pertanian </a>
                                         </li>
                                         <li>
-                                            <a href="item-editor.html"> Data Komoditas Pertanian </a>
+                                            <a href="<?php echo site_url()?>Admin/data_komoditas_pertanian"> Data Komoditas Pertanian </a> 
                                         </li>
                                     </ul>
                                 </li>

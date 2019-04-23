@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 04:42 PM
+-- Generation Time: Apr 23, 2019 at 05:17 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.0.24
 
@@ -19,20 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sikap_kab_malang`
+-- Database: `sikap_sikap`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_kebutuhan`
---
-
-CREATE TABLE `data_kebutuhan` (
-  `keb_id` int(11) NOT NULL,
-  `keb_jml` int(11) NOT NULL,
-  `keb_kons_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -42,7 +30,7 @@ CREATE TABLE `data_kebutuhan` (
 
 CREATE TABLE `data_komoditas` (
   `id` int(11) NOT NULL,
-  `det_kmd_id` varchar(6) NOT NULL,
+  `det_kmd_id` int(6) NOT NULL,
   `kec_id` char(3) NOT NULL,
   `tanam` double(10,3) DEFAULT NULL,
   `panen` double(10,3) DEFAULT NULL,
@@ -51,9 +39,16 @@ CREATE TABLE `data_komoditas` (
   `bulan` varchar(15) NOT NULL,
   `tahun` char(4) NOT NULL,
   `ketersediaan` double(10,3) NOT NULL,
-  `surplus` double(10,3) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_komoditas`
+--
+
+INSERT INTO `data_komoditas` (`id`, `det_kmd_id`, `kec_id`, `tanam`, `panen`, `provitas`, `produksi`, `bulan`, `tahun`, `ketersediaan`, `timestamp`) VALUES
+(1, 1, 'APG', 4000.000, 4000.000, 40000.000, 40004.000, 'Januari', '2019', 25098.510, '2019-04-23 03:08:58'),
+(2, 1, 'BTR', 4000.000, 4000.000, 4000.000, 4000.000, 'Mei', '2019', 2509.600, '2019-04-23 03:11:48');
 
 -- --------------------------------------------------------
 
@@ -67,7 +62,7 @@ CREATE TABLE `data_konsumsi` (
   `kons_bulan` varchar(15) NOT NULL,
   `kons_thn` char(4) NOT NULL,
   `kons_kec_id` char(3) NOT NULL,
-  `kons_det_kmd_id` varchar(6) NOT NULL
+  `kons_det_kmd_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -83,6 +78,45 @@ CREATE TABLE `data_penduduk` (
   `pend_kec_id` char(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `data_penduduk`
+--
+
+INSERT INTO `data_penduduk` (`pend_id`, `pend_jml`, `pend_thn`, `pend_kec_id`) VALUES
+(1, 52426, '2018', 'APG'),
+(2, 68891, '2018', 'BTR'),
+(3, 71924, '2018', 'BLW'),
+(4, 118921, '2018', 'DPT'),
+(5, 77860, '2018', 'DAU'),
+(6, 62627, '2018', 'DNO'),
+(7, 53132, '2018', 'GDG'),
+(8, 85546, '2018', 'GDL'),
+(9, 74529, '2018', 'JBG'),
+(10, 60180, '2018', 'KPR'),
+(11, 84822, '2018', 'KPL'),
+(12, 31279, '2018', 'KSB'),
+(13, 107955, '2018', 'KPJ'),
+(14, 38187, '2018', 'KRM'),
+(15, 111844, '2018', 'LWG'),
+(16, 49309, '2018', 'NJM'),
+(17, 56418, '2018', 'NGT'),
+(18, 45740, '2018', 'PGK'),
+(19, 67631, '2018', 'PGL'),
+(20, 160763, '2018', 'PKS'),
+(21, 90140, '2018', 'PKJ'),
+(22, 92797, '2018', 'PCM'),
+(23, 68184, '2018', 'PJN'),
+(24, 183415, '2018', 'SGR'),
+(25, 90275, '2018', 'SMW'),
+(26, 54418, '2018', 'SPC'),
+(27, 54346, '2018', 'TJN'),
+(28, 60876, '2018', 'TYD'),
+(29, 75605, '2018', 'TMP'),
+(30, 114698, '2018', 'TRN'),
+(31, 89450, '2018', 'WGR'),
+(32, 81047, '2018', 'WJK'),
+(33, 41361, '2018', 'WNS');
+
 -- --------------------------------------------------------
 
 --
@@ -90,10 +124,54 @@ CREATE TABLE `data_penduduk` (
 --
 
 CREATE TABLE `detil_komoditas` (
-  `det_kmd_id` varchar(6) NOT NULL,
+  `det_kmd_id` int(6) NOT NULL,
   `det_kmd_nama` varchar(30) NOT NULL,
-  `komoditas_kmd_id` char(6) NOT NULL
+  `komoditas_kmd_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detil_komoditas`
+--
+
+INSERT INTO `detil_komoditas` (`det_kmd_id`, `det_kmd_nama`, `komoditas_kmd_id`) VALUES
+(1, 'Padi', 1),
+(2, 'Jagung', 2),
+(3, 'Kedelai', 3),
+(4, 'Ubi Kayu', 4),
+(5, 'Ubi Jalar', 5),
+(6, 'Kacang Tanah', 6),
+(7, 'Kacang Hijau', 7),
+(8, 'Bawang Merah', 8),
+(9, 'Bawang Putih', 8),
+(10, 'Cabe Merah', 9),
+(11, 'Cabe Rawit', 10),
+(12, 'Daging Kerbau', 11),
+(13, 'Daging Kuda', 11),
+(14, 'Daging Sapi Potong', 11),
+(15, 'Daging Sapi Perah', 11),
+(16, 'Daging Babi', 11),
+(17, 'Daging Domba', 11),
+(18, 'Daging Kambing', 11),
+(19, 'Daging Kelinci', 11),
+(20, 'Daging Ayam Buras', 11),
+(21, 'Daging Ayam Ras Pedaging', 11),
+(22, 'Daging Ayam Ras Petelur', 11),
+(23, 'Daging Burung Dara', 11),
+(24, 'Daging Burung Puyuh', 11),
+(25, 'Daging Itik', 11),
+(26, 'Daging Entok', 11),
+(27, 'Susu Sapi Perah', 12),
+(28, 'Susu Kambing Perah', 12),
+(29, 'Telur Ayam Buras', 13),
+(30, 'Telur Ayam Ras Petelur', 13),
+(31, 'Telur Burung Puyuh', 13),
+(32, 'Telur Itik', 13),
+(33, 'Telur Entok', 13),
+(34, 'Ikan Tangkap Laut', 14),
+(35, 'Ikan Tangkap PU', 14),
+(36, 'Ikan Budidaya', 14),
+(37, 'Ikan Olahan', 14),
+(38, 'Gula', 15);
 
 -- --------------------------------------------------------
 
@@ -102,9 +180,18 @@ CREATE TABLE `detil_komoditas` (
 --
 
 CREATE TABLE `kategori` (
-  `kat_id` varchar(8) NOT NULL,
-  `kat_nama` int(11) NOT NULL
+  `kat_id` int(3) NOT NULL,
+  `kat_nama` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`kat_id`, `kat_nama`) VALUES
+(1, 'Dinas Pertanian'),
+(2, 'Dinas Peternakan'),
+(3, 'Dinas Perikanan');
 
 -- --------------------------------------------------------
 
@@ -122,8 +209,39 @@ CREATE TABLE `kecamatan` (
 --
 
 INSERT INTO `kecamatan` (`kec_id`, `kec_nama`) VALUES
-('DNO', 'Donomulyo'),
-('PGK', 'Pagak');
+('APG', 'AMPELGADING'),
+('BLW', 'BULULAWANG'),
+('BTR', 'BANTUR'),
+('DAU', 'DAU'),
+('DNO', 'DONOMULYO'),
+('DPT', 'DAMPIT'),
+('GDG', 'GEDANGAN'),
+('GDL', 'GONDANGLEGI'),
+('JBG', 'JABUNG'),
+('KPJ', 'KEPANJEN'),
+('KPL', 'KARANGPLOSO'),
+('KPR', 'KALIPARE'),
+('KRM', 'KROMENGAN'),
+('KSB', 'KASEMBON'),
+('LWG', 'LAWANG'),
+('NGT', 'NGANTANG'),
+('NJM', 'NGAJUM'),
+('PCM', 'PONCOKUSUMO'),
+('PGK', 'PAGAK'),
+('PGL', 'PAGELARAN'),
+('PJN', 'PUJON'),
+('PKJ', 'PAKISAJI'),
+('PKS', 'PAKIS'),
+('SGR', 'SINGOSARI'),
+('SMW', 'SUMBERMANJING WETAN'),
+('SPC', 'SUMBERPUCUNG'),
+('TJN', 'TAJINAN'),
+('TMP', 'TUMPANG'),
+('TRN', 'TUREN'),
+('TYD', 'TIRTOYUDO'),
+('WGR', 'WAGIR'),
+('WJK', 'WAJAK'),
+('WNS', 'WONOSARI');
 
 -- --------------------------------------------------------
 
@@ -132,10 +250,31 @@ INSERT INTO `kecamatan` (`kec_id`, `kec_nama`) VALUES
 --
 
 CREATE TABLE `komoditas` (
-  `kmd_id` char(6) NOT NULL,
+  `kmd_id` int(6) NOT NULL,
   `kmd_nama` varchar(30) NOT NULL,
-  `kategori_kat_id` varchar(8) NOT NULL
+  `kategori_kat_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komoditas`
+--
+
+INSERT INTO `komoditas` (`kmd_id`, `kmd_nama`, `kategori_kat_id`) VALUES
+(1, 'Padi', 1),
+(2, 'Jagung', 1),
+(3, 'Kedelai', 1),
+(4, 'Ubi kayu', 1),
+(5, 'Ubi jalar', 1),
+(6, 'Kacang tanah', 1),
+(7, 'Kacang hijau', 1),
+(8, 'Bawang', 1),
+(9, 'Cabe Merah', 1),
+(10, 'Cabe Rawit', 1),
+(11, 'Daging', 2),
+(12, 'Susu', 2),
+(13, 'Telur', 2),
+(14, 'Ikan', 3),
+(15, 'Gula', 1);
 
 -- --------------------------------------------------------
 
@@ -165,13 +304,6 @@ INSERT INTO `login` (`id`, `username`, `password`, `level`) VALUES
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `data_kebutuhan`
---
-ALTER TABLE `data_kebutuhan`
-  ADD PRIMARY KEY (`keb_id`),
-  ADD KEY `data_kebutuhan_data_konsumsi` (`keb_kons_id`);
 
 --
 -- Indexes for table `data_komoditas`
@@ -241,12 +373,6 @@ ALTER TABLE `login`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `data_kebutuhan`
---
-ALTER TABLE `data_kebutuhan`
-  ADD CONSTRAINT `data_kebutuhan_data_konsumsi` FOREIGN KEY (`keb_kons_id`) REFERENCES `data_konsumsi` (`kons_id`);
 
 --
 -- Constraints for table `data_komoditas`

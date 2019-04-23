@@ -266,7 +266,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Ketersediaan (Ton): </label>
                                             <div class="col-sm-10">
-                                            <input type="number" class="form-control boxed" name="ketersediaan" placeholder="" id="ketersediaan" value="" disabled> </div>
+                                            <input type="number" class="form-control boxed" name="ketersediaan" placeholder="" id="ketersediaan" value="" readonly> </div>
                                             <?php echo form_error('ketersediaan'); ?>
                                         </div>
 

@@ -99,7 +99,7 @@ class Admin_model extends CI_Model {
 		return $query->result();
     }
 
-    public function savekonsumsipertanian($id)
+    public function savekonsumsi($id)
     {
        $data = array(
                    'kons_id' => $id,              
@@ -112,7 +112,7 @@ class Admin_model extends CI_Model {
        $this->db->insert('data_konsumsi', $data);
     }
 
-    public function editkonsumsipertanian($id)
+    public function editkonsumsi($id)
     {
         $data = array(               
             'kons_jml' => $this->input->post('kons_jml'),
@@ -126,7 +126,7 @@ class Admin_model extends CI_Model {
         $this->db->update('data_konsumsi', $data);
     }
 
-    public function hapusdatakonsumsipertanian($id)
+    public function hapusdatakonsumsi($id)
     {
         $this->db->where('kons_id', $id);
         $this->db->delete('data_konsumsi');
@@ -138,10 +138,33 @@ class Admin_model extends CI_Model {
         return $query->result();
     }
 
+    public function newrowkomoditas($i)
+    {
+        $query = $this->db->query("Select id FROM data_komoditas WHERE id =".$i);
+        return $query->result();
+    }
+
     public function getdatakomoditaspertanian()
     {
     	$query = $this->db->query("SELECT dko.det_kmd_nama, kec.kec_nama, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.bulan, dk.tahun, dk.ketersediaan FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id where k.kategori_kat_id = 1");
 		return $query->result();
+    }
+
+    public function savekomoditas($id)
+    {
+       $data = array(
+                   'id' => $id,              
+                   'det_kmd_id' => $this->input->post('det_kmd_id'),
+                   'kec_id' => $this->input->post('kec_id'),
+                   'tanam' => $this->input->post('tanam'),
+                   'panen' => $this->input->post('panen'),
+                   'provitas' => $this->input->post('provitas'),
+                   'produksi' => $this->input->post('produksi'),
+                   'bulan' => $this->input->post('bulan'),
+                   'tahun' => $this->input->post('tahun'),
+                   'ketersediaan' => $this->input->post('ketersediaan')
+                );
+       $this->db->insert('data_komoditas', $data);
     }
 }
 

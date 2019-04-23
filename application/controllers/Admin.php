@@ -216,7 +216,7 @@ class Admin extends CI_Controller {
 		else
 		{
 			$barisbaru = $this->carirowkosongkonsumsi();
-			$this->Admin_model->savekonsumsipertanian($barisbaru);
+			$this->Admin_model->savekonsumsi($barisbaru);
 			$this->session->set_flashdata('flash','disimpan');
 			$this->konsumsi_pertanian();
 		}	      
@@ -244,7 +244,7 @@ class Admin extends CI_Controller {
 		}
 		else
 		{
-			$this->Admin_model->editkonsumsipertanian($id);
+			$this->Admin_model->editkonsumsi($id);
 			$this->session->set_flashdata('flash','diupdate');
 			redirect('Admin/konsumsi_pertanian','refresh');
 		}	
@@ -253,7 +253,7 @@ class Admin extends CI_Controller {
 	public function hapus_konsumsi_pertanian($id)
 	{
 	    $this->load->model('Admin_model');
-	    $this->Admin_model->hapusdatakonsumsipertanian($id);       
+	    $this->Admin_model->hapusdatakonsumsi($id);       
 	    $this->session->set_flashdata('flash','dihapus');
 	    redirect('Admin/konsumsi_pertanian','refresh');
 	}
@@ -275,13 +275,12 @@ class Admin extends CI_Controller {
 		$data['kecamatan'] = $this->Admin_model->getAll();
 		$data['komoditas'] = $this->Admin_model->getkomoditipertanian();
 
-		$this->form_validation->set_rules('det_kem_id','Nama Komoditi','required');
-		$this->form_validation->set_rules('kec_id','Nama Kecamatan','required');
+		// $this->form_validation->set_rules('det_kem_id','Nama Komoditi','required');
+		// $this->form_validation->set_rules('kec_id','Nama Kecamatan','required');
 		$this->form_validation->set_rules('tanam','Jumlah Tanam','required');
 		$this->form_validation->set_rules('panen','Jumlah Panen','required');
 		$this->form_validation->set_rules('provitas','Jumlah Provitas','required');
 		$this->form_validation->set_rules('produksi','Jumlah Produksi','required');
-		$this->form_validation->set_rules('ketersediaan','Jumlah Ketersediaan','required');
 		$this->form_validation->set_rules('bulan','Nama Bulan','required');
 		$this->form_validation->set_rules('tahun','Nama Tahun','required');
 		
@@ -291,11 +290,30 @@ class Admin extends CI_Controller {
 		}
 		else
 		{
-			$barisbaru = $this->carirowkosongkonsumsi();
-			$this->Admin_model->savekonsumsipertanian($barisbaru);
+			$barisbaru = $this->carirowkosongkomoditas();
+			$this->Admin_model->savekomoditas($barisbaru);
 			$this->session->set_flashdata('flash','disimpan');
 			$this->data_komoditas_pertanian();
 		}	      
+	}
+
+	//fungsi cari row kosong pada konsumsi
+	public function carirowkosongkomoditas()
+	{
+		$this->load->model('Admin_model');
+		
+		$i = 1;
+		$x = 1;
+		
+		while($x != 0)
+		{
+			$data = $this->Admin_model->newrowkomoditas($i);
+			$x = count($data);
+			$i++;
+		}
+
+		$i = $i - 1;
+		return $i;
 	}
 	
 }
