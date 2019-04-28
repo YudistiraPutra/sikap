@@ -138,9 +138,7 @@ class Admin extends CI_Controller {
 		{
 			$this->Admin_model->editdatapenduduk($id);
 			$this->session->set_flashdata('flash','diupdate');
-			redirect('Admin/penduduk','refresh');
-			
-			
+			redirect('Admin/penduduk','refresh');	
 		}	
         
 	}
@@ -315,6 +313,19 @@ class Admin extends CI_Controller {
 		$i = $i - 1;
 		return $i;
 	}
+
+	function kebutuhanpertanian(){
+		$this->load->model("Admin_model");
+        $data['tahun']=$this->Admin_model->get_tahun();
+        $this->load->view('Admin/KebutuhanPertanian',$data);
+    }
+ 
+    function get_jumlahpenduduk(){
+		$this->load->model("Admin_model");
+        $id=$this->input->post('id');
+        $data=$this->Admin_model->get_jumlah($id);
+        echo json_encode($data);
+    }
 	
 }
 

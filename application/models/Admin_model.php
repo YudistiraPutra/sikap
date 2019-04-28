@@ -40,7 +40,7 @@ class Admin_model extends CI_Model {
         return $this->db->delete($this->_table, array("kec_id" => $id));
     }
 
-    public function getAllpenduduk()
+    public function getpenduduk()
     {
     	$query = $this->db->query("Select * FROM data_penduduk as p INNER JOIN kecamatan as k ON p.pend_kec_id = k.kec_id");
 		return $query->result();
@@ -165,6 +165,16 @@ class Admin_model extends CI_Model {
                    'ketersediaan' => $this->input->post('ketersediaan')
                 );
        $this->db->insert('data_komoditas', $data);
+    }
+
+    function get_tahun(){
+        $hasil=$this->db->query("SELECT DISTINCT pend_thn FROM data_penduduk ORDER BY pend_thn ASC");
+        return $hasil->result();
+    }
+ 
+    function get_jumlah($id){
+        $hasil=$this->db->query("SELECT SUM(pend_jml) as JumlahPenduduk FROM data_penduduk WHERE pend_thn='$id'");
+        return $hasil->result();
     }
 }
 
