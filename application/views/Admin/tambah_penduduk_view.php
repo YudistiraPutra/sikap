@@ -39,8 +39,6 @@
 				<label for="">Tahun</label>
 				<input class="date-own form-control" style="width: 300px;" type="text" name="tahunpenduduk" id='tahunpenduduk'>
 			</div>
-
-			
   			<div class="form-group">
 				<label for="">Jumlah Penduduk</label>
 				<input type="number" class="form-control" id="pend_jml" name="pend_jml" placeholder="Masukkan Jumlah Penduduk">
