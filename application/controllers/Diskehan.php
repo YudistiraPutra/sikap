@@ -320,6 +320,25 @@ class Diskehan extends CI_Controller {
 	    redirect('Diskehan/data_komoditas_pertanian','refresh');
 	}
 
+	//mulai rekap-rekap
+	function rekap_pertanian2(){
+		$data['listtahun'] = date("Y");
+		$this->load->view('Diskehan/Rekap_pertanian2',$data);
+	}
+
+	function rekap_pertanian(){
+		$data['listtahun'] = date("Y");
+		$this->load->view('Diskehan/Rekap_pertanian',$data);
+	}
+
+	function get_rekap_pertanian(){
+		$tahun=$this->input->post('tahun');
+		$data=$this->Diskehan_model->ajax_rekap_pertanian($tahun);
+		echo json_encode($data);
+	}
+
+	//mulai grafik pertanian
+
 }
 
 /* End of file Diskehan.php */

@@ -155,4 +155,10 @@ class Diskehan_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('data_komoditas');
     }
+
+    //model rekap
+    public function ajax_rekap_pertanian($tahun){
+        $hasil=$this->db->query("SELECT de.det_kmd_nama, SUM(dk.tanam) as tanam, SUM(dk.panen) as panen, SUM(dk.provitas) as provitas, sum(dk.produksi) as produksi, sum(dk.ketersediaan) as ketersediaan, sum(dk.surplus) as surplus, sum(dk.psb) as psb FROM data_komoditas as dk inner join detil_komoditas as de on de.det_kmd_id=dk.det_kmd_id inner join komoditas as k on k.kmd_id=de.komoditas_kmd_id where dk.tahun = '$tahun' AND k.kategori_kat_id = 1 GROUP BY dk.det_kmd_id");
+		return $hasil->result();
+    }
 }
