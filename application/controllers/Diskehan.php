@@ -321,10 +321,6 @@ class Diskehan extends CI_Controller {
 	}
 
 	//mulai rekap-rekap
-	function rekap_pertanian2(){
-		$data['listtahun'] = date("Y");
-		$this->load->view('Diskehan/Rekap_pertanian2',$data);
-	}
 
 	function rekap_pertanian(){
 		$data['listtahun'] = date("Y");
@@ -338,8 +334,12 @@ class Diskehan extends CI_Controller {
 	}
 
 	//mulai grafik pertanian
-
-}
+	function grafik_pertanian(){
+		$data =  $this->Diskehan_model->grafik_pertanian()->result();
+		$x['data'] = json_encode($data);
+		$this->load->view('Diskehan/Grafik_pertanian',$x);
+	}
+  }
 
 /* End of file Diskehan.php */
 /* Location: ./application/controllers/Diskehan.php */
