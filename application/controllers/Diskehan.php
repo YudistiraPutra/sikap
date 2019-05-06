@@ -426,8 +426,19 @@ class Diskehan extends CI_Controller {
 	//mulai rekap-rekap
 
 	function rekap_pertanian(){
-		$data['listtahun'] = date("Y");
-		$this->load->view('Diskehan/Rekap_pertanian',$data);
+		$listtahun = date("Y");
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/Rekap_pertanian',
+			'menu'	=> 'Data Pertanian',
+			'title' => 'Data komoditas Pertanian',
+			'listtahun' => $listtahun,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
 	}
 
 	function get_rekap_pertanian(){

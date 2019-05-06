@@ -1,4 +1,3 @@
-
                  <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
@@ -9,12 +8,14 @@
 
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
-                    <section class="section">
+                     <section class="section">
+                        <div class="row sameheight-container">
                             <div class="col-md-12">
-                                <div class="card">
+                                <div class="card ">
                                     <div class="card-block">
+                                        <!-- Nav tabs -->
                                         <div class="card-title-block">
-                                        <p>Pilih Tahun Data :</p>
+                                            <p>Pilih Tahun Data :</p>
                                             <select name="kategori" id="kategori" class="form-control">
                                                 <option value="0">-PILIH-</option>
                                                     <?php $year = $listtahun - 1; ?>
@@ -22,10 +23,29 @@
                                                         <option><?php echo $i; ?></option>
                                                     <?php } ?>
                                             </select>
-                                        </div>
-                                        <div class="card-title-block">
-                                        <p id="headerawal">Silahkan Pilih data terlebih dahulu</p>
-                                        <h5 id= "title1" style="display: none">Tabel Kebutuhan Pangan</h5>
+                                             
+                                             <br>
+                                             <br>
+                                        <!-- </div> -->
+                                        <ul class="nav nav-tabs nav-tabs-bordered">
+                                            <li class="nav-item">
+                                                <a href="#home" class="nav-link active" data-target="#home" data-toggle="tab" aria-controls="home" role="tab">Kebutuhan Pangan</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#profile" class="nav-link" data-target="#profile" aria-controls="profile" data-toggle="tab" role="tab">Ketersediaan Pangan</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="" class="nav-link" data-target="#messages" aria-controls="messages" data-toggle="tab" role="tab">Suplus/Minus</a>
+                                            </li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        
+                                        <div class="tab-content tabs-bordered">
+
+                                             <p id="headerawal">Silahkan Pilih data terlebih dahulu</p>
+                                            <div class="tab-pane fade in active" id="home">
+                                               
+                                                 <h5 id= "title1" style="display: none">Tabel Kebutuhan Pangan</h5>
                                         <table id="kebutuhanpangan" class="table table-striped table-bordered table-hover" style="display: none">
                                                 <thead>
                                                         <tr>
@@ -104,8 +124,9 @@
                                                         </tr>
                                                 </tbody>
                                         </table>
-                                        
-                                        <h5 id= "title2" style="display: none">Tabel Ketersediaan Pangan</h5>
+                                            </div>
+                                            <div class="tab-pane fade" id="profile">
+                                                 <h5 id= "title2" style="display: none">Tabel Ketersediaan Pangan</h5>
                                         <table id="ketersediaanpangan" class="table table-striped table-bordered table-hover" style="display: none">
                                                 <thead>
                                                         <tr>
@@ -196,10 +217,11 @@
                                                         </tr>
                                                 </tbody>
                                         </table>
-
-                                        <h5 id="title3" style="display: none">Tabel Suplus/Minus</h5>
-                                        <table id="surplusminus" class="table table-striped table-bordered table-hover" style="display: none">
-                                                <thead>
+                                            </div>
+                                            <div class="tab-pane fade" id="messages">
+                                                <h5 id="title3" style="display: none">Tabel Suplus/Minus</h5>
+                                        <table id="surplusminus" class="table table-striped table-bordered table-hover" style="display: none" width="100%">
+                                                <thead >
                                                         <tr>
                                                             <th>Nama Komoditi</th>
                                                             <th>Jumlah</th>
@@ -276,10 +298,16 @@
                                                         </tr>
                                                 </tbody>
                                         </table>
+                                            </div>
                                         </div>
+                                    </div>
                                 </div>
+                                </div>
+                                    <!-- /.card-block -->
+                                </div>
+                                <!-- /.card -->
                             </div>
-                        </div>
+                   
                     </section>
                 </article>
                     
@@ -326,6 +354,10 @@
             $(document).ready(function(){
                 //deklarasi object awal
                 const headerawal =  document.getElementById('headerawal');
+                // for (var i=0; i<headerawal.length;i++){
+                // resizableGrid(headerawal[i]);
+                // }
+
 
                 const titletabel1 = document.getElementById('title1');
                 const tabelkebutuhanpangan = document.getElementById('kebutuhanpangan');
@@ -367,6 +399,7 @@
 
                                 title1.style.display = "block";    
                                 tabelkebutuhanpangan.style.display = "block";
+
 
                                 title2.style.display = "block";    
                                 tabelketersediaanpangan.style.display = "block";
@@ -429,6 +462,7 @@
                                 
                                     headerawal.style.display = "block";
                                     headerawal.innerHTML = "Tidak Ada Data";
+
 
                                     title1.style.display = "none";    
                                     tabelkebutuhanpangan.style.display = "none";
