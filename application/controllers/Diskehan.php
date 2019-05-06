@@ -50,13 +50,42 @@ class Diskehan extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('Diskehan/Dashboard');
+		// $this->load->model([
+			
+		// 	'Diskehan_model' => 'penduduk',
+			
+		// ]);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/Dashboard',
+			'menu'	=> 'dashboard',
+			'title' => 'dashboard',
+			'footer'=> 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template', $data);
 	}
 
 	public function kecamatan()
 	{
-		$data['kecamatan'] = $this->Diskehan_model->getkecamatan();
-		$this->load->view('Diskehan/kecamatan',$data);
+		// $this->load->model([
+			
+		// 	'Diskehan_model' => 'kecamatan',
+			
+		// ]);
+
+		$kecamatan = $this->Diskehan_model->getkecamatan();
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/kecamatan',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Data kecamatan',
+			'kecamatan' => $kecamatan,
+		];
+		$this->load->view('Diskehan/template',$data);
 	}
 
 	public function tambahkecamatan()
@@ -66,7 +95,16 @@ class Diskehan extends CI_Controller {
 
 		if($this->form_validation->run() == False)
 		{
-			$this->load->view('Diskehan/form_kecamatan');
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/form_kecamatan',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Tambah data kecamatan',
+			'footer' => 'Diskehan/footer',
+		];
+			$this->load->view('Diskehan/template', $data);
 		}
 		else
 		{
@@ -85,8 +123,18 @@ class Diskehan extends CI_Controller {
 
 	public function penduduk()
 	{
-		$data['penduduk'] = $this->Diskehan_model->getpenduduk();
-		$this->load->view('Diskehan/penduduk',$data);
+		$penduduk = $this->Diskehan_model->getpenduduk();
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/penduduk',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Data jumlah penduduk',
+			'penduduk' => $penduduk,
+			'footer' => 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template',$data);
 	}
 
 	public function carirowkosongpenduduk()
@@ -107,7 +155,7 @@ class Diskehan extends CI_Controller {
 
 	public function tambahpenduduk()
 	{
-		$data['kecamatan'] = $this->Diskehan_model->getkecamatan();
+		$kecamatan = $this->Diskehan_model->getkecamatan();
 
 		$this->form_validation->set_rules('pend_jml','Jumlah Penduduk','required',array('required' => '%s tidak boleh kosong.'));
 		$this->form_validation->set_rules('pend_thn','Tahun Data','required',array('required' => '%s tidak boleh kosong.'));
@@ -115,7 +163,17 @@ class Diskehan extends CI_Controller {
 
 		if($this->form_validation->run() == False)
 		{
-			$this->load->view('Diskehan/form_penduduk',$data);
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/form_penduduk',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Tambah Data jumlah penduduk',
+			'kecamatan' => $kecamatan,
+			
+		];
+			$this->load->view('Diskehan/template',$data);
 		}
 		else
 		{
@@ -154,8 +212,19 @@ class Diskehan extends CI_Controller {
 
 	public function komoditas_pertanian()
 	{
-		$data['komoditi'] = $this->Diskehan_model->getkomoditibyid(1);
-		$this->load->view('Diskehan/list_komoditi_pertanian',$data);
+		$komoditi = $this->Diskehan_model->getkomoditibyid(1);
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/list_komoditi_pertanian',
+			'menu'	=> 'Data Pertanian',
+			'title' => 'Data Komoditas Pertanian',
+			'komoditi' => $komoditi,
+			'footer' => 'Diskehan/footer',
+			
+		];
+			$this->load->view('Diskehan/template',$data);
 	}
 
 	public function carirowkosongkonsumsi()
@@ -178,14 +247,25 @@ class Diskehan extends CI_Controller {
 
 	public function konsumsi_pertanian()
 	{
-		$data['konsumsi'] = $this->Diskehan_model->getkonsumsibyid(1);
-		$this->load->view('Diskehan/konsumsi_pertanian',$data);
+		$konsumsi = $this->Diskehan_model->getkonsumsibyid(1);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/konsumsi_pertanian',
+			'menu'	=> 'Data Pertanian',
+			'title' => 'Data konsumsi Pertanian',
+			'konsumsi' => $konsumsi,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
 	}
 
 	public function tambah_konsumsi_pertanian()
 	{
-		$data['kecamatan'] = $this->Diskehan_model->getkecamatan();
-		$data['komoditas'] = $this->Diskehan_model->getkomoditibyid(1);
+		$kecamatan = $this->Diskehan_model->getkecamatan();
+		$komoditas = $this->Diskehan_model->getkomoditibyid(1);
 
 		$this->form_validation->set_rules('kons_det_kmd_id','Jenis Komoditi','required',array('required' => '%s tidak boleh kosong.'));
 		$this->form_validation->set_rules('kons_bulan','Bulan','required',array('required' => '%s tidak boleh kosong.'));
@@ -195,7 +275,19 @@ class Diskehan extends CI_Controller {
 		
 		if($this->form_validation->run() == False)
 		{
-			$this->load->view('Diskehan/form_konsumsi_pertanian',$data);
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/form_konsumsi_pertanian',
+			'menu'	=> 'Data Pertanian',
+			'title' => 'Data konsumsi Pertanian',
+			'kecamatan' => $kecamatan,
+			'komoditas' => $komoditas,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
 		}
 		else
 		{
@@ -256,8 +348,19 @@ class Diskehan extends CI_Controller {
 
 	public function data_komoditas_pertanian()
 	{
-		$data['data_komoditas'] = $this->Diskehan_model->getdatakomoditasbyid(1);
-		$this->load->view('Diskehan/data_komoditas_pertanian',$data);
+		$data_komoditas = $this->Diskehan_model->getdatakomoditasbyid(1);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/data_komoditas_pertanian',
+			'menu'	=> 'Data Pertanian',
+			'title' => 'Data komoditas Pertanian',
+			'data_komoditas' => $data_komoditas,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
 	}
 
 	public function tambah_komoditas_pertanian()
