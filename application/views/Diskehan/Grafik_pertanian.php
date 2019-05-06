@@ -25,8 +25,8 @@
     <div>
         <select name="kategori" id="kategori" class="form-control">
           <option value=''>--Pilih--</option>
-                                                  <option value='Januari'>Januari</option>
-                                                  <option value='Februari'>Februari</option>
+            <option value='Januari'>Januari</option>
+           <option value='Februari'>Februari</option>
                                                   <option value='Maret'>Maret</option>
                                                   <option value='April'>April</option>
                                                   <option value='Mei'>Mei</option>
