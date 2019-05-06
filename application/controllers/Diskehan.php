@@ -336,7 +336,9 @@ class Diskehan extends CI_Controller {
 	//mulai grafik pertanian
 	function grafik_pertanian(){
 		$data =  $this->Diskehan_model->grafik_pertanian()->result();
-		$x['data'] = json_encode($data);
+		$x['listtahun'] = date("Y");
+		$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
+		$x['datasurplus'] = json_encode($data);
 		$this->load->view('Diskehan/Grafik_pertanian',$x);
 	}
   }

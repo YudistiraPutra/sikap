@@ -555,6 +555,7 @@
                                 for (let baris = 1; baris <= 11; baris++) {
                                     kolom1 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(1)");
                                     kolom1.innerHTML = data[baris-1].det_kmd_nama;
+                                    // kolom1.style.color = 'red';
                                     // kolom2 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(2)");
                                     // kolom2.innerHTML = data[baris-1].jumlah_penduduk;
                                     // kolom3 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(3)");
