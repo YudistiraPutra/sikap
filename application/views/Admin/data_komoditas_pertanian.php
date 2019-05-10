@@ -30,6 +30,7 @@
                                                             <th>Provitas (Kw/Ha)</th>
                                                             <th>Produksi (Ton)</th>
                                                             <th>Ketersediaan (Ton)</th>
+                                                            <th>PSB</th>
                                                             <th>Bulan</th>
                                                             <th>Tahun</th>
                                                             <th>Action</th>
@@ -49,6 +50,7 @@
                                                                 <td><?php echo $key->provitas?></td>
                                                                 <td><?php echo $key->produksi?></td>
                                                                 <td><?php echo $key->ketersediaan?></td>
+                                                                <td><?php echo $key->psb?></td>
                                                                 <td><?php echo $key->bulan?></td>
                                                                 <td><?php echo $key->tahun?></td>
                                                                 <td><a href="#" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>

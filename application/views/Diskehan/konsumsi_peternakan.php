@@ -4,58 +4,47 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Komoditas Pertanian </h3>
+                        <h3 class="title"> Data Konsumsi Peternakan </h3>
 
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                     <section class="section">
-                            <div class="col-md-24">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Tabel Data Komoditas Pertanian </h3>
+                                            <h3 class="title"> Tabel Data Konsumsi Peternakan</h3>
                                         </div>
                                         <div class="col-12">
-                                            <a href="<?php base_url()?>tambah_komoditas_pertanian"><button type="button" class="btn btn-primary">Tambah Data</button></a>
-                                        
-                                          <table id="table_id" class="table table-striped table-bordered table-hover">
-                                            
+                                            <a href="<?php base_url()?>tambah_konsumsi_peternakan"><button type="button" class="btn btn-primary">Tambah Data Konsumsi</button></a>
+
+                                          <table id="table_id" class="display">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>
-                                                            <th>Nama Komoditi</th>
                                                             <th>Nama Kecamatan</th>
-                                                            <th>Tanam (Ha)</th>
-                                                            <th>Panen (Ha)</th>
-                                                            <th>Provitas (Kw/Ha)</th>
-                                                            <th>Produksi (Ton)</th>
-                                                            <th>Ketersediaan (Ton)</th>
-                                                            <th>PSB</th>
+                                                            <th>Nama Komoditi</th>
                                                             <th>Bulan</th>
                                                             <th>Tahun</th>
+                                                            <th>Jumlah Konsumsi</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
-
                                                     <?php $i = 1 ?>
                                                     <tbody>
-                                                       <?php foreach ($data_komoditas as $key) { 
+                                                       <?php foreach ($konsumsi as $key) { 
                                                                 ?>
                                                             <tr>
                                                                 <td><?php echo $i?></td>
+                                                                <td><?php echo $key->kec_nama ?></td>
                                                                 <td><?php echo $key->det_kmd_nama ?></td>
-                                                                <td><?php echo $key->kec_nama?></td>
-                                                                <td><?php echo $key->tanam?></td>
-                                                                <td><?php echo $key->panen?></td>
-                                                                <td><?php echo $key->provitas?></td>
-                                                                <td><?php echo $key->produksi?></td>
-                                                                <td><?php echo $key->ketersediaan?></td>
-                                                                <td><?php echo $key->psb?></td>
-                                                                <td><?php echo $key->bulan?></td>
-                                                                <td><?php echo $key->tahun?></td>
-                                                                <td><a href="#" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
+                                                                <td><?php echo $key->kons_bulan ?></td>
+                                                                <td><?php echo $key->kons_thn ?></td>
+                                                                <td><?php echo $key->kons_jml ?></td>
+                                                                <td><a href="<?php echo base_url()?>Diskehan/edit_konsumsi_peternakan/<?php echo $key->kons_id ?>" class="btn btn-warning" role="button">Update</a>
+                                                                <a href="<?php echo base_url()?>Diskehan/hapus_konsumsi_peternakan/<?php echo $key->kons_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
                                                             </tr>
-                                                            <?php  $i=$i+1; } ?>
+                                                            <?php $i=$i+1; } ?>
                                                     </tbody>
                                                 </table>
                                 </div>
@@ -110,10 +99,19 @@
             ga('send', 'pageview');
         </script>
 
-<script>
+        <script>
   $(document).ready( function () {
     $('#table_id').DataTable();
 } );
         </script>
 
-      
+        <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
+        <script src="<?php echo base_url()?>assets/js/app.js"></script>
+        <script src=<?= base_url()?>/assets/js/sweetalert2.all.min.js></script>
+        <script src=<?= base_url()?>/assets/js/scriptjs/konsumsi_pertanian.js></script>
+         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script> -->
+        
+    </body>
+</html>

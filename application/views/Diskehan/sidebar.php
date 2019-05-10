@@ -127,10 +127,10 @@
                                         
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="<?php echo site_url()?>Admin/komoditas_peternakan"> Komoditas Peternakan </a>
+                                            <a href="<?php echo site_url()?>Diskehan/komoditas_peternakan"> Komoditas Peternakan </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo site_url()?>Admin/konsumsi_peternakan"> Data Konsumsi Peternakan </a>
+                                            <a href="<?php echo site_url()?>Diskehan/konsumsi_peternakan"> Data Konsumsi Peternakan </a>
                                         </li>
                                         <li>
                                             <a href="<?php echo site_url()?>Diskehan/data_komoditas_peternakan"> Data Komoditas Peternakan </a>
@@ -148,13 +148,13 @@
                                         
                                     <ul class="sidebar-nav">
                                         <li>
-                                            <a href="<?php echo site_url()?>Diskehan/komoditas_pertanian"> Komoditas Perikanan </a>
+                                            <a href="<?php echo site_url()?>Diskehan/komoditas_perikanan"> Komoditas Perikanan </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo site_url()?>Diskehan/konsumsi_pertanian"> Data Konsumsi Perikanan </a>
+                                            <a href="<?php echo site_url()?>Diskehan/konsumsi_perikanan"> Data Konsumsi Perikanan </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo site_url()?>Diskehan/konsumsi_pertanian"> Data Komoditas Perikanan </a>
+                                            <a href="<?php echo site_url()?>Diskehan/data_komoditas_perikanan"> Data Komoditas Perikanan </a>
                                         </li>
                                         <li>
                                             <a href="<?php echo site_url()?>Diskehan/data_komoditas_pertanian"> Rekap Kebutuhan Pangan Perikanan </a> 

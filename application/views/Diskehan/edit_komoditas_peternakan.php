@@ -165,62 +165,39 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Komoditas Pertanian </h3>
+                        <h3 class="title"> Komoditas Peternakan </h3>
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
                       <section class="section">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
-                                        <?php echo form_open('Diskehan/tambah_komoditas_pertanian'); ?>
+                                        <?php echo form_open('Diskehan/tambah_komoditas_peternakan'); ?>
                                         <div class="card-title-block">
-                                            <h3 class="title"> Form Tambah Komoditas Pertanian </h3>
+                                            <h3 class="title"> Form Tambah Komoditas Peternakan </h3>
                                         </div>
                                           
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right">Jenis Komoditas: </label>
                                             <div class="col-sm-10">
-                                                 <select class="form-control" name="det_kmd_id" id="det_kmd_id">
+                                                 <select  name="kategori" id="kategori" class="form-control">
                                                   <option value=''>--Pilih--</option>
-                                                  <?php foreach ($komoditas as $key) { ;?>
-                                                         <option value="<?php echo $key->det_kmd_id; ?>"><?php echo $key->det_kmd_nama ?></option>
+                                                  <?php foreach ($kategori as $key) { ;?>
+                                                         <option value="<?php echo $key->kmd_id; ?>"><?php echo $key->kmd_nama ?></option>
                                                    <?php } ?>
                                                 </select>
-                                                <br><?php echo form_error('det_kmd_id'); ?></div>
+                                                </div>  
                                         </div>
 
-                                          <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right">Nama Kecamatan: </label>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 form-control-label text-xs-right">Nama Komoditas: </label>
                                             <div class="col-sm-10">
-                                                 <select class="form-control" name="kec_id">
+                                                 <select id="kons_det_kmd_id" class="form-control" name="kons_det_kmd_id">
                                                   <option value=''>--Pilih--</option>
-                                                  <?php foreach ($kecamatan as $key) { ;?>
-                                                         <option value="<?php echo $key->kec_id; ?>"><?php echo $key->kec_nama ?></option>
-                                                   <?php } ?>
                                                 </select>
-                                                <br><?php echo form_error('kec_id'); ?></div>
+                                                <br><?php echo form_error('det_kmd_id'); ?></div>  
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Tanam (Ha): </label>
-                                            <div class="col-sm-10">
-                                            <input type="number" class="form-control boxed" name="tanam" placeholder="" step="any"> 
-                                            <br><p>Silahkan gunakan titik (.) untuk bilangan desimal</p><?php echo form_error('tanam'); ?> </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Panen (Ha): </label>
-                                            <div class="col-sm-10">
-                                            <input type="number" class="form-control boxed" name="panen" placeholder="" step="any"> 
-                                            <br><p>Silahkan gunakan titik (.) untuk bilangan desimal</p><?php echo form_error('panen'); ?> </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Provitas (Kw/Ha): </label>
-                                            <div class="col-sm-10">
-                                            <input type="number" class="form-control boxed" name="provitas" placeholder="" step="any"> 
-                                            <br><p>Silahkan gunakan titik (.) untuk bilangan desimal</p><?php echo form_error('provitas'); ?> </div>
-                                        </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Produksi (Ton): </label>
@@ -240,7 +217,7 @@
                                             <label class="col-sm-2 form-control-label text-xs-right"> PSB: </label>
                                             <div class="col-sm-10">
                                             <input type="number" class="form-control boxed" name="psb" placeholder="" id="psb" value="" step="any" readonly>
-                                            <br><?php echo form_error('ketersediaan'); ?>  </div>
+                                            <br><?php echo form_error('psb'); ?>  </div>
                                         </div>
 
                                         <div class="form-group row">
@@ -347,132 +324,13 @@
                 });
         </script>
         <script type="text/javascript">
-             $(document).ready(function() {
-             
-             const ketersediaan = document.getElementById('ketersediaan');
-             const psb = document.getElementById('psb');
+        $(document).ready(function(){
 
-             $('#produksi').change(function(){
-                 var produksi = $(this).val();
-                 var tipekategori = $("#det_kmd_id").val();
+            var bulan = <?php echo json_encode($komoditas[0]->bulan); ?>;
+            var id =  <?php echo json_encode($komoditas[0]->id); ?>;
 
-                 if(tipekategori == 0){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 1){
-                    //  console.log("Haloo");
-                    ketersediaan.value = produksi*0.6274;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 2){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*2600000/8000000;
-                 }
-                 else if(tipekategori == 3){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*6700000/8000000;
-                 }
-                 else if(tipekategori == 4){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*1350000/8000000;
-                 }
-                 else if(tipekategori == 5){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*800000/8000000;
-                 }
-                 else if(tipekategori == 6){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*12215000/8000000;
-                 }
-                 else if(tipekategori == 7){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*8725000/8000000;
-                 }
-                 else if(tipekategori == 8){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*35700000/8000000;
-                 }
-                 else if(tipekategori == 9){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 10){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*20500000/8000000;
-                 }
-                 else if(tipekategori == 11){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*16300000/8000000;
-                 }
-                 else if(tipekategori == 38){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*9000000/8000000;
-                 }
-             });
-
-             $('#det_kmd_id').change(function(){ 
-                ketersediaan.value = "";
-                psb.value = "";
-
-                var produksi = $(this).val();
-                var tipekategori = $("#det_kmd_id").val();
-
-                 if(tipekategori == 0){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 1){
-                    //  console.log("Haloo");
-                    ketersediaan.value = produksi*0.6274;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 2){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*2600000/8000000;
-                 }
-                 else if(tipekategori == 3){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*6700000/8000000;
-                 }
-                 else if(tipekategori == 4){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*1350000/8000000;
-                 }
-                 else if(tipekategori == 5){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*800000/8000000;
-                 }
-                 else if(tipekategori == 6){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*12215000/8000000;
-                 }
-                 else if(tipekategori == 7){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*8725000/8000000;
-                 }
-                 else if(tipekategori == 8){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*35700000/8000000;
-                 }
-                 else if(tipekategori == 9){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi;
-                 }
-                 else if(tipekategori == 10){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*20500000/8000000;
-                 }
-                 else if(tipekategori == 11){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*16300000/8000000;
-                 }
-                 else if(tipekategori == 38){
-                    ketersediaan.value = produksi;
-                    psb.value = produksi*9000000/8000000;
-                 }
-             });
-             });
+            console.log(id);
+        });
         </script>
         <script src="<?php echo base_url()?>assets/js/vendor.js"></script>
         <script src="<?php echo base_url()?>assets/js/app.js"></script>

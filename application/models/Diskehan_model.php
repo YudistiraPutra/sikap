@@ -5,7 +5,7 @@ class Diskehan_model extends CI_Model {
 
     public function getkecamatan()
     {
-    	$query = $this->db->query("Select * FROM kecamatan");
+    	$query = $this->db->query("SELECT * FROM `kecamatan`where kec_id!=1");
 		return $query->result();
     }
 
@@ -129,7 +129,7 @@ class Diskehan_model extends CI_Model {
 
     public function getdatakomoditasbyid($id)
     {
-    	$query = $this->db->query("SELECT dko.det_kmd_nama, kec.kec_nama, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.bulan, dk.tahun, dk.ketersediaan FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id where k.kategori_kat_id =".$id);
+    	$query = $this->db->query("SELECT dk.id, dko.det_kmd_nama, kec.kec_nama, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.bulan, dk.tahun, dk.ketersediaan, dk.psb FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id where k.kategori_kat_id =".$id);
 		return $query->result();
     }
 
@@ -145,7 +145,8 @@ class Diskehan_model extends CI_Model {
                    'produksi' => $this->input->post('produksi'),
                    'bulan' => $this->input->post('bulan'),
                    'tahun' => $this->input->post('tahun'),
-                   'ketersediaan' => $this->input->post('ketersediaan')
+                   'ketersediaan' => $this->input->post('ketersediaan'),
+                   'psb' => $this->input->post('psb'),
                 );
        $this->db->insert('data_komoditas', $data);
     }
@@ -163,8 +164,61 @@ class Diskehan_model extends CI_Model {
     }
 
     //model grafik
-    public function grafik_pertanian(){
-        $hasil=$this->db->query("SELECT de.det_kmd_nama, sum(dk.surplus) as surplus, dk.tahun FROM data_komoditas as dk inner join detil_komoditas as de on de.det_kmd_id=dk.det_kmd_id inner join komoditas as k on k.kmd_id=de.komoditas_kmd_id where dk.tahun = 2018 AND k.kategori_kat_id = 1 GROUP BY dk.det_kmd_id");
+    public function grafik_pertanian($thn,$kec,$bln){
+        $hasil=$this->db->query("SELECT de.det_kmd_nama, sum(dk.surplus) as surplus, dk.tahun FROM data_komoditas as dk inner join detil_komoditas as de on de.det_kmd_id=dk.det_kmd_id inner join komoditas as k on k.kmd_id=de.komoditas_kmd_id where dk.tahun = '$thn' AND k.kategori_kat_id = '$kec' AND dk.bulan = '$bln' AND dk.kec_id = 1 GROUP BY dk.det_kmd_id");
 		return $hasil;
     }
+
+    //model tambahan untuk peternakan
+    public function get_kategori_peternakan()
+    {
+        $hasil = $this->db->query("SELECT * FROM `komoditas` WHERE kategori_kat_id = 2");
+        return $hasil->result();
+    }
+
+    public function ajax_komoditi_peternakan($id)
+    {
+        $hasil = $this->db->query("SELECT dk.det_kmd_nama, dk.det_kmd_id FROM `komoditas` as kom inner join detil_komoditas as dk on dk.komoditas_kmd_id = kom.kmd_id where dk.komoditas_kmd_id = '$id'");
+        return $hasil->result();
+    }
+
+    public function savekonsumsipeternakan($id)
+    {
+       $data = array(
+                   'kons_id' => $id,              
+                   'kons_jml' => $this->input->post('kons_jml'),
+                   'kons_bulan' => $this->input->post('kons_bulan'),
+                   'kons_thn' => $this->input->post('kons_thn'),
+                   'kons_kec_id' => "01",
+                   'kons_det_kmd_id' => $this->input->post('kons_det_kmd_id'),
+                );
+       $this->db->insert('data_konsumsi', $data);
+    }
+
+    public function getdatakonsumsibyidpeternakan($id)
+    {
+        $query = $this->db->query("SELECT dk.kons_id, dk.kons_jml, dk.kons_bulan,dk.kons_thn, dk.kons_kec_id, dk.kons_det_kmd_id, k.kec_nama, dko.det_kmd_nama, kom.kmd_nama, kom.kmd_id FROM data_konsumsi as dk inner join kecamatan as k on k.kec_id = dk.kons_kec_id inner join detil_komoditas as dko on dko.det_kmd_id= dk.kons_det_kmd_id inner join komoditas as kom on dko.komoditas_kmd_id=kom.kmd_id where dk.kons_id =".$id);
+		return $query->result();
+    }
+
+    public function savekomoditaspeternakan($id)
+    {
+       $data = array(
+                   'id' => $id,              
+                   'det_kmd_id' => $this->input->post('det_kmd_id'),
+                   'kec_id' => "01",
+                   'produksi' => $this->input->post('produksi'),
+                   'bulan' => $this->input->post('bulan'),
+                   'tahun' => $this->input->post('tahun'),
+                   'ketersediaan' => $this->input->post('ketersediaan'),
+                   'psb' => $this->input->post('psb')
+                );
+       $this->db->insert('data_komoditas', $data);
+    }
+
+    public function getdatakomoditasforupdate($id){
+        $query = $this->db->query("SELECT dk.id, dko.det_kmd_nama, kec.kec_nama, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.bulan, dk.tahun, dk.ketersediaan, dk.psb FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id where dk.id =".$id);
+		return $query->result();
+    }
+    
 }

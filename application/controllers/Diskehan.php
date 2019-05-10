@@ -448,14 +448,327 @@ class Diskehan extends CI_Controller {
 	}
 
 	//mulai grafik pertanian
+	// function grafik_pertanian(){
+	// 	$data =  $this->Diskehan_model->grafik_pertanian(2018,1,'JANUARI')->result();
+	// 	$x['listtahun'] = date("Y");
+	// 	$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
+	// 	$x['datasurplus'] = json_encode($data);
+	// 	$this->load->view('Diskehan/Grafik_pertanian',$x);
+	// }
+
 	function grafik_pertanian(){
-		$data =  $this->Diskehan_model->grafik_pertanian()->result();
+		$data =  $this->Diskehan_model->grafik_pertanian(2018,1,'JANUARI')->result();
 		$x['listtahun'] = date("Y");
 		$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
 		$x['datasurplus'] = json_encode($data);
-		$this->load->view('Diskehan/Grafik_pertanian',$x);
+		$this->load->view('Diskehan/Grafik_pertanian2',$x);
 	}
-  }
+
+	function get_grafik_pertanian(){
+		$thn= 2018;
+		$data=$this->Diskehan_model->grafik_pertanian($thn,1,'JANUARI');
+		echo json_encode($data);
+	}
+
+	//mulai peternakan
+	public function komoditas_peternakan()
+	{
+		$komoditi = $this->Diskehan_model->getkomoditibyid(2);
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/list_komoditi_peternakan',
+			'menu'	=> 'Data Peternakan',
+			'title' => 'Data Komoditas Peternakan',
+			'komoditi' => $komoditi,
+			'footer' => 'Diskehan/footer',
+			
+		];
+			$this->load->view('Diskehan/template',$data);
+	}
+
+	public function konsumsi_peternakan()
+	{
+		$konsumsi = $this->Diskehan_model->getkonsumsibyid(2);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/konsumsi_peternakan',
+			'menu'	=> 'Data Peternakan',
+			'title' => 'Data konsumsi Peternakan',
+			'konsumsi' => $konsumsi,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function tambah_konsumsi_peternakan()
+	{
+		$kategori = $this->Diskehan_model->get_kategori_peternakan();
+
+		$this->form_validation->set_rules('kons_det_kmd_id','Nama Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_bulan','Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_thn','Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_jml','Jumlah Konsumsi','required',array('required' => '%s tidak boleh kosong.'));
+		
+		if($this->form_validation->run() == False)
+		{
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/form_konsumsi_peternakan',
+			'menu'	=> 'Data Peternakan',
+			'title' => 'Data konsumsi Peternakan',
+			'kategori' => $kategori,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
+		}
+		else
+		{
+			$barisbaru = $this->carirowkosongkonsumsi();
+			$this->Diskehan_model->savekonsumsipeternakan($barisbaru);
+			$this->session->set_flashdata('flash','disimpan');
+			$this->konsumsi_peternakan();
+		}	      
+	}
+
+	public function get_subkategori_peternakan(){
+		$id=$this->input->post('id');
+		$data=$this->Diskehan_model->ajax_komoditi_peternakan($id);
+		echo json_encode($data);
+	}
+
+	public function edit_konsumsi_peternakan($id)
+	{
+		$this->form_validation->set_rules('kons_det_kmd_id','Nama Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_bulan','Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_thn','Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_jml','Jumlah Konsumsi','required',array('required' => '%s tidak boleh kosong.'));
+
+		if($this->form_validation->run() == False)
+		{
+			$data['kategori'] = $this->Diskehan_model->get_kategori_peternakan();
+			$data['konsumsi'] = $this->Diskehan_model->getdatakonsumsibyidpeternakan($id);
+			$this->load->view('Diskehan/edit_konsumsi_peternakan',$data);
+		}
+		else
+		{
+			$this->Diskehan_model->editkonsumsi($id);
+			$this->session->set_flashdata('flash','diupdate');
+			redirect('Diskehan/konsumsi_peternakan','refresh');
+		}	
+	}
+
+	public function hapus_konsumsi_peternakan($id)
+	{
+	    $this->Diskehan_model->hapusdatakonsumsi($id);       
+	    $this->session->set_flashdata('flash','dihapus');
+	    redirect('Diskehan/konsumsi_peternakan','refresh');
+	}
+
+	public function data_komoditas_peternakan()
+	{
+		$data_komoditas = $this->Diskehan_model->getdatakomoditasbyid(2);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/data_komoditas_peternakan',
+			'menu'	=> 'Data Peternakan',
+			'title' => 'Data komoditas Peternakan',
+			'data_komoditas' => $data_komoditas,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function tambah_komoditas_peternakan()
+	{
+		$data['kategori'] = $this->Diskehan_model->get_kategori_peternakan();
+
+		$this->form_validation->set_rules('det_kmd_id','Jenis Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('produksi','Jumlah Produksi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('bulan','Nama Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('tahun','Nama Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Diskehan/form_komoditas_peternakan',$data);
+		}
+		else
+		{
+			$barisbaru = $this->carirowkosongkomoditas();
+			$this->Diskehan_model->savekomoditaspeternakan($barisbaru);
+			$this->session->set_flashdata('flash','disimpan');
+			$this->data_komoditas_pertanian();
+		}	      
+	}
+
+	public function edit_komoditas_peternakan($id)
+	{
+		$this->form_validation->set_rules('det_kmd_id','Jenis Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('produksi','Jumlah Produksi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('bulan','Nama Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('tahun','Nama Tahun','required',array('required' => '%s tidak boleh kosong.'));
+
+		if($this->form_validation->run() == False)
+		{
+			$data['kategori'] = $this->Diskehan_model->get_kategori_peternakan();
+			$data['komoditas'] = $this->Diskehan_model->getdatakomoditasforupdate($id);
+			$this->load->view('Diskehan/edit_konsumsi_peternakan',$data);
+		}
+		else
+		{
+			$this->Diskehan_model->editkonsumsi($id);
+			$this->session->set_flashdata('flash','diupdate');
+			redirect('Diskehan/konsumsi_pertanian','refresh');
+		}	
+	}
+
+	//peternakan kurang hapus dan update
+
+	//mulai perikanan
+	public function komoditas_perikanan()
+	{
+		$komoditi = $this->Diskehan_model->getkomoditibyid(3);
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/list_komoditi_perikanan',
+			'menu'	=> 'Data Perikanan',
+			'title' => 'Data Komoditas Perikanan',
+			'komoditi' => $komoditi,
+			'footer' => 'Diskehan/footer',
+			
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+  public function konsumsi_perikanan()
+	{
+		$konsumsi = $this->Diskehan_model->getkonsumsibyid(3);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/konsumsi_perikanan',
+			'menu'	=> 'Data Perikanann',
+			'title' => 'Data konsumsi Perikanan',
+			'konsumsi' => $konsumsi,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function tambah_konsumsi_perikanan()
+	{
+		$komoditas = $this->Diskehan_model->getkomoditibyid(3);
+
+		$this->form_validation->set_rules('kons_det_kmd_id','Nama Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_bulan','Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_thn','Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_jml','Jumlah Konsumsi','required',array('required' => '%s tidak boleh kosong.'));
+		
+		if($this->form_validation->run() == False)
+		{
+			$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/form_konsumsi_perikanan',
+			'menu'	=> 'Data Perikanan',
+			'title' => 'Data konsumsi Perikanan',
+			'komoditas' => $komoditas,
+			'footer' => 'Diskehan/footer',
+
+		];
+		$this->load->view('Diskehan/template',$data);
+		}
+		else
+		{
+			$barisbaru = $this->carirowkosongkonsumsi();
+			$this->Diskehan_model->savekonsumsi($barisbaru);
+			$this->session->set_flashdata('flash','disimpan');
+			$this->konsumsi_perikanan();
+		}	      
+	}
+
+	public function edit_konsumsi_perikanan($id)
+	{
+		$this->form_validation->set_rules('kons_det_kmd_id','Jenis Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_bulan','Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_thn','Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('kons_jml','Jumlah Konsumsi','required',array('required' => '%s tidak boleh kosong.'));
+
+		if($this->form_validation->run() == False)
+		{
+			$data['komoditas'] = $this->Diskehan_model->getkomoditibyid(3);
+			$data['konsumsi'] = $this->Diskehan_model->getdatakonsumsibyid($id);
+			$this->load->view('Diskehan/edit_konsumsi_perikanan',$data);
+		}
+		else
+		{
+			$this->Diskehan_model->editkonsumsi($id);
+			$this->session->set_flashdata('flash','diupdate');
+			redirect('Diskehan/konsumsi_pertanian','refresh');
+		}	
+	}
+
+	public function hapus_konsumsi_perikanan($id)
+	{
+	    $this->Diskehan_model->hapusdatakonsumsi($id);       
+	    $this->session->set_flashdata('flash','dihapus');
+	    redirect('Diskehan/konsumsi_perikanan','refresh');
+	}
+
+	public function data_komoditas_perikanan()
+	{
+		$data_komoditas = $this->Diskehan_model->getdatakomoditasbyid(3);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/data_komoditas_perikanan',
+			'menu'	=> 'Data Perikanan',
+			'title' => 'Data komoditas Perikanan',
+			'data_komoditas' => $data_komoditas,
+			'footer' => 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function tambah_komoditas_perikanan()
+	{
+		$data['komoditas'] = $this->Diskehan_model->getkomoditibyid(3);
+
+		$this->form_validation->set_rules('det_kmd_id','Jenis Komoditi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('produksi','Jumlah Produksi','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('bulan','Nama Bulan','required',array('required' => '%s tidak boleh kosong.'));
+		$this->form_validation->set_rules('tahun','Nama Tahun','required',array('required' => '%s tidak boleh kosong.'));
+		
+		if($this->form_validation->run() == False)
+		{
+			$this->load->view('Diskehan/form_komoditas_perikanan',$data);
+		}
+		else
+		{
+			$barisbaru = $this->carirowkosongkomoditas();
+			$this->Diskehan_model->savekomoditaspeternakan($barisbaru);
+			$this->session->set_flashdata('flash','disimpan');
+			$this->data_komoditas_pertanian();
+		}	      
+	}
+
+}
 
 /* End of file Diskehan.php */
 /* Location: ./application/controllers/Diskehan.php */
