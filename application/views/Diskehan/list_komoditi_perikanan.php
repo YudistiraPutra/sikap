@@ -4,7 +4,7 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Komoditas Peternakan </h3>
+                        <h3 class="title"> Data Komoditas Perikanan </h3>
 
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
@@ -19,7 +19,7 @@
                                             <!-- jika dibutuhkan ditambahkan -->
                                             <!-- <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-info">Tambah Data Penduduk</button></a> -->
 
-                                          <table id="table_id" class="display">
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>

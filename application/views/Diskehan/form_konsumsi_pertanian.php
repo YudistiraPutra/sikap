@@ -25,7 +25,7 @@
                                                          <option value="<?php echo $key->kec_id; ?>"><?php echo $key->kec_nama ?></option>
                                                    <?php } ?>
                                                 </select>
-                                                <br><?php echo form_error('kons_kec_id'); ?></div>
+                                                <?php echo form_error('kons_kec_id'); ?></div>
                                         </div>
 
                                         <div class="form-group row">
@@ -37,7 +37,7 @@
                                                          <option value="<?php echo $key->det_kmd_id; ?>"><?php echo $key->det_kmd_nama ?></option>
                                                    <?php } ?>
                                                 </select>
-                                                <br><?php echo form_error('kons_det_kmd_id'); ?></div>  
+                                                <?php echo form_error('kons_det_kmd_id'); ?></div>  
                                         </div>
 
                                         <div class="form-group row">
@@ -58,13 +58,16 @@
                                                   <option value='November'>November</option>
                                                   <option value='Desember'>Desember</option>
                                                 </select>
-                                                <br><?php echo form_error('kons_bulan'); ?></div>
+                                                <?php echo form_error('kons_bulan'); ?></div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data: </label>
+                                            <div class="col-sm-10">
                                             <input class="date-own form-control" style="width: 300px;" type="text" name="kons_thn">
-                                         <br><?php echo form_error("kons_thn"); ?>
+                                            <?php echo form_error("kons_thn"); ?>
+                                          </div>
+                                         
                                         </div>
                                         
 
@@ -82,6 +85,7 @@
                                         </div>
                                         <?php echo form_close(); ?>
                                 </div>
+                              </div>
                             </div>
                         </div>
                     </section>

@@ -4,7 +4,7 @@
 
                 <article class="content charts-flot-page">
                     <div class="title-block">
-                        <h3 class="title"> Data Konsumsi Peternakan </h3>
+                        <h3 class="title"> Data Konsumsi Perikanan </h3>
 
                         <!-- <p class="title-description"> List of sample charts with custom colors </p> -->
                     </div>
@@ -13,12 +13,12 @@
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Tabel Data Konsumsi Peternakan</h3>
+                                            <h3 class="title"> Tabel Data Konsumsi Perikanan</h3>
                                         </div>
                                         <div class="col-12">
                                             <a href="<?php base_url()?>tambah_konsumsi_perikanan"><button type="button" class="btn btn-primary">Tambah Data Konsumsi</button></a>
 
-                                          <table id="table_id" class="display">
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>

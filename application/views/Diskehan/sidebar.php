@@ -119,20 +119,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li >
-                                    <a href="kebutuhan-pangan.php">
+                                <li class="<?= $menu == 'Data Peternakan' ? 'active' : '' ?>">
+                                    <a href="#">
                                         <i class="fa fa-book"></i> Data Peternakan
                                         <i class="fa arrow"></i> 
                                     </a>
                                         
                                     <ul class="sidebar-nav">
-                                        <li>
+                                        <li class="<?= $title == 'Komoditas Peternakan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/komoditas_peternakan"> Komoditas Peternakan </a>
                                         </li>
-                                        <li>
+                                        <li class="<?= $title == 'Data Konsumsi Peternakan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/konsumsi_peternakan"> Data Konsumsi Peternakan </a>
                                         </li>
-                                        <li>
+                                        <li class="<?= $title == 'Data Komoditas Peternakan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/data_komoditas_peternakan"> Data Komoditas Peternakan </a>
                                         </li>
                                         <li>
@@ -140,20 +140,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li >
-                                    <a href="kebutuhan-pangan.php">
+                                <li class="<?= $menu == 'Data Perikanan' ? 'active' : '' ?>" >
+                                    <a href="#">
                                         <i class="fa fa-book"></i> Data Perikanan
                                         <i class="fa arrow"></i> 
                                     </a>
                                         
                                     <ul class="sidebar-nav">
-                                        <li>
+                                        <li class="<?= $title == 'Komoditas Perikanan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/komoditas_perikanan"> Komoditas Perikanan </a>
                                         </li>
-                                        <li>
+                                        <li class="<?= $title == 'Data konsumsi Perikanan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/konsumsi_perikanan"> Data Konsumsi Perikanan </a>
                                         </li>
-                                        <li>
+                                        <li class="<?= $title == 'Data komoditas Perikanan' ? 'active' : '' ?>">
                                             <a href="<?php echo site_url()?>Diskehan/data_komoditas_perikanan"> Data Komoditas Perikanan </a>
                                         </li>
                                         <li>

@@ -15,11 +15,11 @@
                                         <div class="card-title-block">
                                             <h3 class="title"> Tabel Data Komoditas Pertanian </h3>
                                         </div>
-                                        <div class="col-12">
+                                       <!--  <div class="col-12"> -->
                                             <!-- jika dibutuhkan ditambahkan -->
                                             <!-- <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-info">Tambah Data Penduduk</button></a> -->
 
-                                          <table id="table_id" class="display">
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>

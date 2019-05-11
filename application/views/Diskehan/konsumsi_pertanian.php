@@ -18,7 +18,7 @@
                                         <div class="col-12">
                                             <a href="<?php base_url()?>tambah_konsumsi_pertanian"><button type="button" class="btn btn-primary">Tambah Data Konsumsi</button></a>
 
-                                          <table id="table_id" class="display">
+                                          <table id="table_id" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No.</th>

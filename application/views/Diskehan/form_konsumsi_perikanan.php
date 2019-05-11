@@ -26,7 +26,7 @@
                                                          <option value="<?php echo $key->det_kmd_id; ?>"><?php echo $key->det_kmd_nama ?></option>
                                                    <?php } ?>
                                                 </select>
-                                                <br><?php echo form_error('kons_det_kmd_id'); ?></div>  
+                                                <?php echo form_error('kons_det_kmd_id'); ?></div>  
                                         </div>
 
                                         <div class="form-group row">
@@ -47,13 +47,15 @@
                                                   <option value='November'>November</option>
                                                   <option value='Desember'>Desember</option>
                                                 </select>
-                                                <br><?php echo form_error('kons_bulan'); ?></div>
+                                                <?php echo form_error('kons_bulan'); ?></div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Tahun Data: </label>
+                                            <div class="col-sm-10">
                                             <input class="date-own form-control" style="width: 300px;" type="text" name="kons_thn">
-                                         <br><?php echo form_error("kons_thn"); ?>
+                                                <?php echo form_error("kons_thn"); ?>
+                                            </div>
                                         </div>
                                         
 
@@ -61,7 +63,8 @@
                                             <label class="col-sm-2 form-control-label text-xs-right"> Jumlah Konsumsi: </label>
                                             <div class="col-sm-10">
                                             <input type="number" class="form-control boxed" name="kons_jml" placeholder="" step="any"> 
-                                            <br><p>Silahkan gunakan titik (.) untuk bilangan desimal</p><br><?php echo form_error('kons_jml'); ?></div>
+                                            <p>Silahkan gunakan titik (.) untuk bilangan desimal</p>
+                                                <?php echo form_error('kons_jml'); ?></div>
                                         </div>
 
                                         <div class="form-group row">
