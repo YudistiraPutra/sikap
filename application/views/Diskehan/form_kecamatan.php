@@ -19,7 +19,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> ID Kecamatan: </label>
                                             <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" name="kec_id" placeholder="">
+                                            <input type="text" class="form-control boxed" name="kec_id" placeholder="" style="text-transform:uppercase">
                                             <br> 
                                             <?php echo form_error('kec_id'); ?></div>
                                         </div>
@@ -27,7 +27,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 form-control-label text-xs-right"> Nama Kecamatan: </label>
                                             <div class="col-sm-10">
-                                            <input type="text" class="form-control boxed" name="kec_nama" placeholder=""> 
+                                            <input type="text" class="form-control boxed" name="kec_nama" placeholder="" style="text-transform:uppercase"> 
                                             <br>
                                             <?php echo form_error('kec_nama'); ?></div>                                         
                                         </div>

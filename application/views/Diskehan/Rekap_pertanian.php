@@ -23,6 +23,25 @@
                                                         <option><?php echo $i; ?></option>
                                                     <?php } ?>
                                             </select>
+                                            <br>
+
+                                            <p>Pilih Bulan Data :</p>
+                                            <select class="form-control" name="bulan">
+                                                  <option value=''>--Pilih--</option>
+                                                  <option value='SEMUA'>Semua Bulan</option>
+                                                  <option value='Januari'>Januari</option>
+                                                  <option value='Februari'>Februari</option>
+                                                  <option value='Maret'>Maret</option>
+                                                  <option value='April'>April</option>
+                                                  <option value='Mei'>Mei</option>
+                                                  <option value='Juni'>Juni</option>
+                                                  <option value='Juli'>Juli</option>
+                                                  <option value='Agustus'>Agustus</option>
+                                                  <option value='September'>September</option>
+                                                  <option value='Oktober'>Oktober</option>
+                                                  <option value='November'>November</option>
+                                                  <option value='Desember'>Desember</option>
+                                            </select>
                                              
                                              <br>
                                              <br>
@@ -385,6 +404,40 @@
 
                 $('#kategori').change(function(){
                     var tahun=$(this).val();
+
+                    headerawal.style.display = "none";
+
+                    title1.style.display = "block";    
+                    tabelkebutuhanpangan.style.display = "block";
+
+
+                    title2.style.display = "block";    
+                    tabelketersediaanpangan.style.display = "block";
+                                
+                    title3.style.display = "block";    
+                    tabelsurplusminus.style.display = "block";
+
+                    $.ajax({
+                        url : "<?php echo base_url();?>Diskehan/get_rekap_penduduk",
+                        method : "POST",
+                        data : {tahun: tahun},
+                        async : false,
+                        dataType : 'json',
+                        success: function(data){
+                        var len = data.length;
+
+                        console.log(len);
+                        // if(len > 0){
+
+                        //      for (let baris = 1; baris <= 11; baris++) {
+                        //             kolom2 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(2)");
+                        //             kolom2.innerHTML = data[baris-1].jumlah_penduduk;
+                        //         }
+                        // } 
+
+                    });
+
+
                     $.ajax({
                         url : "<?php echo base_url();?>Diskehan/get_rekap_pertanian",
                         method : "POST",
@@ -394,30 +447,18 @@
                         success: function(data){
                             var len = data.length;
                                 if(len > 0){
-                                
-                                headerawal.style.display = "none";
 
-                                title1.style.display = "block";    
-                                tabelkebutuhanpangan.style.display = "block";
-
-
-                                title2.style.display = "block";    
-                                tabelketersediaanpangan.style.display = "block";
-                                
-                                title3.style.display = "block";    
-                                tabelsurplusminus.style.display = "block";
-
-                                for (let baris = 1; baris <= 11; baris++) {
-                                    kolom1 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(1)");
-                                    kolom1.innerHTML = data[baris-1].det_kmd_nama;
-                                    // kolom1.style.color = 'red';
-                                    // kolom2 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(2)");
-                                    // kolom2.innerHTML = data[baris-1].jumlah_penduduk;
-                                    // kolom3 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(3)");
-                                    // kolom3.innerHTML = data[baris-1].konsumsi;
-                                    // kolom4 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(4)");
-                                    // kolom4.innerHTML = data[baris-1].kebutuhan;
-                                }
+                                // for (let baris = 1; baris <= 11; baris++) {
+                                //     kolom1 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(1)");
+                                //     kolom1.innerHTML = data[baris-1].det_kmd_nama;
+                                //     kolom1.style.color = 'red';
+                                //     kolom2 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(2)");
+                                //     kolom2.innerHTML = data[baris-1].jumlah_penduduk;
+                                //     kolom3 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(3)");
+                                //     kolom3.innerHTML = data[baris-1].konsumsi;
+                                //     kolom4 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(4)");
+                                //     kolom4.innerHTML = data[baris-1].kebutuhan;
+                                // }
 
                                 
                                 for (let baris = 1; baris <= 11; baris++) {
@@ -458,7 +499,9 @@
                                 // const trbaru = document.createElement('tr');
                                 // const thbaru = document.createElement('th');
                                 
-                                }else{
+                                }
+                                
+                                else{
                                 
                                     headerawal.style.display = "block";
                                     headerawal.innerHTML = "Tidak Ada Data";

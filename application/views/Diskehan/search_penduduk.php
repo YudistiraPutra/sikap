@@ -13,37 +13,32 @@
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="card-title-block">
-                                            <h3 class="title"> Tabel Data Penduduk </h3>
+                                            <h3 class="title"> Cari Data Penduduk </h3>
                                         </div>
                                         <div class=".col-12 .col-sm-6 .col-md-8">
-                                            <a href="<?php base_url()?>tambahpenduduk"><button type="button" class="btn btn-primary">Tambah Data Penduduk</button></a>
-                                            <a href="<?php base_url()?>penduduk_search"><button type="button" class="btn btn-primary">Advanced Search</button></a>
+                                            
+                                        <select class="form-control" name="kec_id" id="kec_id">
+                                                  <option value=''>--Pilih--</option>
+                                                  <?php foreach ($kecamatan as $key) { ;?>
+                                                         <option value="<?php echo $key->kec_id; ?>"><?php echo $key->kec_nama ?></option>
+                                                   <?php } ?>
+                                        </select>
+                                        <br>
 
-                                          <table id="example" class="table table-striped table-bordered table-hover">
-                                                    <thead>
+                                        <p id="headerawal">Silahkan Pilih data terlebih dahulu</p>
+                                        
+                                        <table class="table table-striped table-bordered table-hover" style="display: none" id="table1">
+                                            <!-- here goes our data! -->
+                                            <thead>
                                                         <tr>
-                                                            <th>No.</th>
-                                                            <th>Nama Kecamatan</th>
+                                                            <th>No</th>
+                                                            <th>Nama</th>
                                                             <th>Tahun</th>
                                                             <th>Jumlah Penduduk</th>
-                                                            <th>Action</th>
                                                         </tr>
-                                                    </thead>
-                                                    <?php $i = 1 ?>
-                                                    <tbody>
-                                                       <?php foreach ($penduduk as $key) { 
-                                                                ?>
-                                                            <tr>
-                                                                <td><?php echo $i?></td>
-                                                                <td><?php echo $key->kec_nama ?></td>
-                                                                <td><?php echo $key->pend_thn ?></td>
-                                                                <td><?php echo $key->pend_jml ?></td>
-                                                                <td><a href="<?php echo base_url()?>Diskehan/editdatapenduduk/<?php echo $key->pend_id ?>" class="btn btn-warning" role="button">Update</a>
-                                                                <a href="<?php echo base_url()?>Diskehan/hapusdatapenduduk/<?php echo $key->pend_id ?>" class="btn btn-danger tombol-hapus" role="button">Hapus</a></td>
-                                                            </tr>
-                                                            <?php $i=$i+1; } ?>
-                                                    </tbody>
-                                                </table>
+                                            </thead>
+                                        </table>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -97,12 +92,53 @@
         </script>
 
         <script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-        "language": {
-            "decimal": ",",
-            "thousands": "."
+    $(document).ready(function() {
+
+    let table = document.getElementById("table1");
+    $('#kec_id').change(function(){
+
+    $("#table1").find("tr:gt(0)").remove();
+    var kec=$(this).val();
+
+    headerawal.style.display = "none";
+
+    $.ajax({
+    url : "<?php echo base_url();?>Diskehan/get_search_penduduk",
+    method : "POST",
+    data : {kec: kec},
+    async : false,
+    dataType : 'json',
+    success: function(data){
+
+
+    if(data.length > 0){
+    let i = 1;
+    let mountains = data ;
+
+    table.style.display = "block"; 
+
+    function generateTable(table, data) {
+      for (let element of data) {
+        let row = table.insertRow();
+          let cell = row.insertCell();
+          let text = document.createTextNode(i);
+          cell.appendChild(text);
+          i = i + 1;
+        for (key in element) {
+          cell = row.insertCell();
+          text = document.createTextNode(element[key]);
+          cell.appendChild(text);
         }
-    } );
+      }
+    }
+
+generateTable(table, mountains);
+    } 
+    else{
+        headerawal.style.display = "block";
+        headerawal.innerHTML = "Tidak ada data";
+    }}
+    });
 } );
+    });
         </script>

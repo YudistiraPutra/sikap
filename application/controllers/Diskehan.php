@@ -137,6 +137,27 @@ class Diskehan extends CI_Controller {
 		$this->load->view('Diskehan/template',$data);
 	}
 
+	public function penduduk_search(){
+		$kecamatan = $this->Diskehan_model->getkecamatan();
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/search_penduduk',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Data jumlah penduduk',
+			'kecamatan' => $kecamatan,
+			'footer' => 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function get_search_penduduk(){
+		$kec=$this->input->post('kec');
+		$data=$this->Diskehan_model->ajax_search_penduduk($kec);
+		echo json_encode($data);
+	}
+
 	public function carirowkosongpenduduk()
 	{
 		$i = 1;
@@ -260,6 +281,31 @@ class Diskehan extends CI_Controller {
 
 		];
 		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function konsumsi_pertanian_search(){
+		$kecamatan = $this->Diskehan_model->getkecamatan();
+		$komoditi = $this->Diskehan_model->getkomoditibyid(1);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/search_konsumsi_pertanian',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Data jumlah penduduk',
+			'kecamatan' => $kecamatan,
+			'komoditi' => $komoditi,
+			'footer' => 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function get_search_konsumsi(){
+		$kec_id=$this->input->post('kec_id');
+		$kom_id=$this->input->post('kom_id');
+		$tahun=$this->input->post('tahun');
+		$data=$this->Diskehan_model->ajax_search_konsumsi($kec_id, $kom_id, $tahun);
+		echo json_encode($data);
 	}
 
 	public function tambah_konsumsi_pertanian()
@@ -436,6 +482,31 @@ class Diskehan extends CI_Controller {
 	    redirect('Diskehan/data_komoditas_pertanian','refresh');
 	}
 
+	public function komoditas_pertanian_search(){
+		$kecamatan = $this->Diskehan_model->getkecamatan();
+		$komoditi = $this->Diskehan_model->getkomoditibyid(1);
+		$data = [
+			// 'username'= $session_data'username',
+			// 'level'= $session_data'level',
+			'sidebar' => 'Diskehan/sidebar',
+			'content' => 'Diskehan/search_komoditas_pertanian',
+			'menu'	=> 'Data Penduduk',
+			'title' => 'Data jumlah penduduk',
+			'kecamatan' => $kecamatan,
+			'komoditi' => $komoditi,
+			'footer' => 'Diskehan/footer',
+		];
+		$this->load->view('Diskehan/template',$data);
+	}
+
+	public function get_search_komoditas(){
+		$kec_id=$this->input->post('kec_id');
+		$kom_id=$this->input->post('kom_id');
+		$tahun=$this->input->post('tahun');
+		$data=$this->Diskehan_model->ajax_search_komoditas($kec_id, $kom_id, $tahun);
+		echo json_encode($data);
+	}
+
 	//mulai rekap-rekap
 
 	function rekap_pertanian(){
@@ -457,6 +528,12 @@ class Diskehan extends CI_Controller {
 	function get_rekap_pertanian(){
 		$tahun=$this->input->post('tahun');
 		$data=$this->Diskehan_model->ajax_rekap_pertanian($tahun);
+		echo json_encode($data);
+	}
+
+	function get_rekap_penduduk(){
+		$tahun=$this->input->post('tahun');
+		$data=$this->Diskehan_model->ajax_rekap_penduduk($tahun);
 		echo json_encode($data);
 	}
 

@@ -17,6 +17,7 @@
                                         </div>
                                         <div class="col-12">
                                             <a href="<?php base_url()?>tambah_komoditas_pertanian"><button type="button" class="btn btn-primary">Tambah Data</button></a>
+                                            <a href="<?php base_url()?> komoditas_pertanian_search"><button type="button" class="btn btn-primary">Advanced Search</button></a>
                                         
                                           <table id="table_id" class="table table-striped table-bordered table-hover">
                                             

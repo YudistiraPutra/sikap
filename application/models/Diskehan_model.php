@@ -70,6 +70,12 @@ class Diskehan_model extends CI_Model {
         $this->db->delete('data_penduduk');
     }
 
+    public function ajax_search_penduduk($kec_id)
+    {
+        $hasil = $this->db->query("Select k.kec_nama, p.pend_thn, p.pend_jml FROM data_penduduk as p INNER JOIN kecamatan as k ON p.pend_kec_id=k.kec_id WHERE pend_kec_id = '$kec_id'");
+        return $hasil->result_array();
+    }
+
     public function getkomoditibyid($id)
     {
     	$query = $this->db->query("SELECT d.det_kmd_id,d.det_kmd_nama FROM `komoditas` as k inner join detil_komoditas as d on d.komoditas_kmd_id = k.kmd_id where k.kategori_kat_id =".$id);
@@ -86,6 +92,12 @@ class Diskehan_model extends CI_Model {
     {
         $query = $this->db->query("Select kons_id FROM data_konsumsi WHERE kons_id =".$i);
         return $query->result();
+    }
+
+    public function ajax_search_konsumsi($kec_id, $kom_id, $tahun)
+    {
+        $hasil = $this->db->query("SELECT kec.kec_nama, d.det_kmd_nama, dk.kons_thn, dk.kons_bulan, dk.kons_jml  FROM data_konsumsi as dk inner join detil_komoditas as d on dk.kons_det_kmd_id = d.det_kmd_id inner join komoditas as k on k.kmd_id = d.komoditas_kmd_id inner join kecamatan as kec on dk.kons_kec_id=kec.kec_id WHERE kec.kec_id = '$kec_id' AND d.det_kmd_id = ".$kom_id." AND dk.kons_thn = ".$tahun);
+        return $hasil->result_array();
     }
 
     public function savekonsumsi($id)
@@ -157,9 +169,20 @@ class Diskehan_model extends CI_Model {
         $this->db->delete('data_komoditas');
     }
 
+    public function ajax_search_komoditas($kec_id, $kom_id, $tahun)
+    {
+        $hasil = $this->db->query("SELECT dk.bulan, dk.tanam, dk.panen, dk.provitas, dk.produksi, dk.ketersediaan, dk.psb FROM data_komoditas as dk inner join detil_komoditas as dko on dk.det_kmd_id = dko.det_kmd_id inner join komoditas as k on dko.komoditas_kmd_id=k.kmd_id INNER join kategori as ka on k.kategori_kat_id=ka.kat_id inner join kecamatan as kec on kec.kec_id = dk.kec_id WHERE kec.kec_id = '$kec_id' AND dko.det_kmd_id = ".$kom_id." AND dk.tahun = ".$tahun);
+        return $hasil->result_array();
+    }
+
     //model rekap
     public function ajax_rekap_pertanian($tahun){
         $hasil=$this->db->query("SELECT de.det_kmd_nama, SUM(dk.tanam) as tanam, SUM(dk.panen) as panen, SUM(dk.provitas) as provitas, sum(dk.produksi) as produksi, sum(dk.ketersediaan) as ketersediaan, sum(dk.surplus) as surplus, sum(dk.psb) as psb FROM data_komoditas as dk inner join detil_komoditas as de on de.det_kmd_id=dk.det_kmd_id inner join komoditas as k on k.kmd_id=de.komoditas_kmd_id where dk.tahun = '$tahun' AND k.kategori_kat_id = 1 GROUP BY dk.det_kmd_id");
+		return $hasil->result();
+    }
+
+    public function ajax_rekap_penduduk($tahun){
+        $hasil=$this->db->query("SELECT SUM(pend_jml) as jumlah_penduduk FROM `data_penduduk` WHERE pend_thn=".$tahun);
 		return $hasil->result();
     }
 
