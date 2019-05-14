@@ -417,26 +417,6 @@
                     title3.style.display = "block";    
                     tabelsurplusminus.style.display = "block";
 
-                    $.ajax({
-                        url : "<?php echo base_url();?>Diskehan/get_rekap_penduduk",
-                        method : "POST",
-                        data : {tahun: tahun},
-                        async : false,
-                        dataType : 'json',
-                        success: function(data){
-                        var len = data.length;
-
-                        console.log(len);
-                        // if(len > 0){
-
-                        //      for (let baris = 1; baris <= 11; baris++) {
-                        //             kolom2 = document.querySelector("#tbody1 tr:nth-child("+baris+") th:nth-child(2)");
-                        //             kolom2.innerHTML = data[baris-1].jumlah_penduduk;
-                        //         }
-                        // } 
-
-                    });
-
 
                     $.ajax({
                         url : "<?php echo base_url();?>Diskehan/get_rekap_pertanian",

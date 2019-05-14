@@ -537,32 +537,33 @@ class Diskehan extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	//mulai grafik pertanian
-	// function grafik_pertanian(){
-	// 	$data =  $this->Diskehan_model->grafik_pertanian(2018,1,'JANUARI')->result();
-	// 	$x['listtahun'] = date("Y");
-	// 	$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
-	// 	$x['datasurplus'] = json_encode($data);
-	// 	$this->load->view('Diskehan/Grafik_pertanian',$x);
-	// }
-
+	// mulai grafik pertanian
 	function grafik_pertanian(){
 		$data =  $this->Diskehan_model->grafik_pertanian(2018,1,'JANUARI')->result();
 		$x['listtahun'] = date("Y");
 		$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
 		$x['datasurplus'] = json_encode($data);
-		$data1 = [
-			// 'username'= $session_data'username',
-			// 'level'= $session_data'level',
-			'sidebar' => 'Diskehan/sidebar',
-			'content' => 'Diskehan/Grafik_pertanian2',
-			'menu'	=> 'Data Pertanian',
-			'title' => 'grafik pertanian',
-			'footer' => 'Diskehan/footer',
-
-		];
-		$this->load->view('Diskehan/template',$x && $data1);
+		var_dump($data);
+		// $this->load->view('Diskehan/Grafik_pertanian',$x);
 	}
+
+	// function grafik_pertanian(){
+	// 	$data =  $this->Diskehan_model->grafik_pertanian(2018,1,'JANUARI')->result();
+	// 	$x['listtahun'] = date("Y");
+	// 	$x['namakecamatan'] = $this->Diskehan_model->getkecamatan();
+	// 	$x['datasurplus'] = json_encode($data);
+	// 	$data1 = [
+	// 		// 'username'= $session_data'username',
+	// 		// 'level'= $session_data'level',
+	// 		'sidebar' => 'Diskehan/sidebar',
+	// 		'content' => 'Diskehan/Grafik_pertanian',
+	// 		'menu'	=> 'Data Pertanian',
+	// 		'title' => 'grafik pertanian',
+	// 		'footer' => 'Diskehan/footer',
+
+	// 	];
+	// 	$this->load->view('Diskehan/template',$x && $data1);
+	// }
 
 	function get_grafik_pertanian(){
 		$thn= 2018;
@@ -888,6 +889,198 @@ class Diskehan extends CI_Controller {
 			$this->session->set_flashdata('flash','disimpan');
 			$this->data_komoditas_pertanian();
 		}	      
+	}
+
+	//print excel
+	public function excel($tipe,$tahun){
+		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+
+		//ambil tipe laporan
+		if($tipe == 1){
+			$namafile = "Pertanian";
+		}
+
+		$excel = new PHPExcel();
+
+		$excel->getDefaultStyle()->getFont()->setName('Arial');
+		$excel->getDefaultStyle()->getFont()->setSize(10);  
+		$excel->getActiveSheet()->getDefaultColumnDimension()->setWidth(15); 
+
+		$style_col = array(
+			'alignment' => array(
+			  'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+			  'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			)
+		  );
+
+		  $style_satu = array(
+			'borders' => array(
+			  'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+			  'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+			  'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+			  'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			));
+
+			$style_row = array(
+				'alignment' => array(
+				  'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+				  'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+				),
+				'borders' => array(
+					'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+					'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+					'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+					'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+				  )
+			  );
+
+		$excel->getActiveSheet(0)->setTitle("Rekap");
+		$excel->setActiveSheetIndex(0);
+
+		$excel->getActiveSheet()->mergeCells('A2:K2');
+		$excel->setActiveSheetIndex(0)->setCellValue('A2', "REALISASI KEBUTUHAN DAN KETERSEDIAAN PANGAN KABUPATEN MALANG");
+		$excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);
+
+		$excel->getActiveSheet()->mergeCells('A3:K3');
+		$excel->setActiveSheetIndex(0)->setCellValue('A3', "TAHUN = $tahun");
+		$excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(true);
+
+		$excel->getActiveSheet()->mergeCells('A5:A7');
+		$excel->setActiveSheetIndex(0)->setCellValue('A5',"No.");
+		$excel->getActiveSheet()->getStyle('A5')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('a7b4c9');
+		$excel->getActiveSheet()->getStyle('A5:A7')->applyFromArray($style_satu);
+
+		$excel->getActiveSheet()->mergeCells('B5:E5');
+		$excel->setActiveSheetIndex(0)->setCellValue('B5',"KEBUTUHAN PANGAN");
+		$excel->getActiveSheet()->getStyle('B5')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('a7b4c9');
+		$excel->getActiveSheet()->getStyle('B5')->getFont()->setBold(true);
+		$excel->getActiveSheet()->getStyle('B5:E5')->applyFromArray($style_satu);
+
+		$excel->getActiveSheet()->mergeCells('B6:B7');
+		$excel->setActiveSheetIndex(0)->setCellValue('B6',"KOMODITI");
+		$excel->getActiveSheet()->getStyle('B6')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+		$excel->getActiveSheet()->getStyle('B6:B7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('C6',"Jml Penduduk");
+		$excel->getActiveSheet()->getStyle('C6')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+
+		$excel->setActiveSheetIndex(0)->setCellValue('C7',"(Jiwa)");
+		$excel->getActiveSheet()->getStyle('C7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+		$excel->getActiveSheet()->getStyle('C6:C7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('D6',"Konsumsi");
+		$excel->getActiveSheet()->getStyle('D6')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+
+		$excel->setActiveSheetIndex(0)->setCellValue('D7',"Kg/kap./bln");
+		$excel->getActiveSheet()->getStyle('D7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+		$excel->getActiveSheet()->getStyle('D6:D7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('E6',"Kebutuhan");
+		$excel->getActiveSheet()->getStyle('E6')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+
+		$excel->setActiveSheetIndex(0)->setCellValue('E7',"(Ton)");
+		$excel->getActiveSheet()->getStyle('E7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('e085c2');
+		$excel->getActiveSheet()->getStyle('E6:E7')->applyFromArray($style_satu);
+
+		$excel->getActiveSheet()->mergeCells('F5:I5');
+		$excel->setActiveSheetIndex(0)->setCellValue('F5',"KETERSEDIAAN PANGAN");
+		$excel->getActiveSheet()->getStyle('F5')->getFont()->setBold(true);
+		$excel->getActiveSheet()->getStyle('F5')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('ff9999');
+		$excel->getActiveSheet()->getStyle('F5:I5')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('F6',"Luas Panen");
+		$excel->setActiveSheetIndex(0)->setCellValue('F7',"(Ha)");
+		$excel->getActiveSheet()->getStyle('F6:F7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('2eb82e');
+		$excel->getActiveSheet()->getStyle('F6:F7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('G6',"Produktivitas");
+		$excel->setActiveSheetIndex(0)->setCellValue('G7',"(Kw/ha)");
+		$excel->getActiveSheet()->getStyle('G6:G7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('2eb82e');
+		$excel->getActiveSheet()->getStyle('G6:G7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('H6',"Produksi");
+		$excel->setActiveSheetIndex(0)->setCellValue('H7',"(Ton)");
+		$excel->getActiveSheet()->getStyle('H6:H7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('2eb82e');
+		$excel->getActiveSheet()->getStyle('H6:H7')->applyFromArray($style_satu);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('I6',"Ketersediaan");
+		$excel->setActiveSheetIndex(0)->setCellValue('I7',"(Ton, Beras)");
+		$excel->getActiveSheet()->getStyle('I6:I7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('2eb82e');
+		$excel->getActiveSheet()->getStyle('I6:I7')->applyFromArray($style_satu);
+
+		$excel->getActiveSheet()->mergeCells('J5:J6');
+		$excel->setActiveSheetIndex(0)->setCellValue('J5',"Surplus/Minus");
+		$excel->setActiveSheetIndex(0)->setCellValue('J7',"(Ton, Beras)");
+		$excel->getActiveSheet()->getStyle('J5:J7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('ffff1a');
+		$excel->getActiveSheet()->getStyle('J5:J7')->applyFromArray($style_satu);
+
+		$excel->getActiveSheet()->mergeCells('K5:K6');
+		$excel->setActiveSheetIndex(0)->setCellValue('K5',"PSB");
+		$excel->setActiveSheetIndex(0)->setCellValue('K7',"(Ton)");
+		$excel->getActiveSheet()->getStyle('K5:K7')->getFill()
+					->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
+					->getStartColor()->setARGB('ff8c1a');
+		$excel->getActiveSheet()->getStyle('K5:K7')->applyFromArray($style_satu);
+
+		//mulai import data
+		// $siswa = $this->SiswaModel->view();
+		$komoditi = $this->Diskehan_model->getkomoditibyid($tipe);
+
+		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
+		$numrow = 8; // Set baris pertama untuk isi tabel adalah baris ke 4
+
+			foreach($komoditi as $data){ // Lakukan looping pada variabel siswa
+				$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+				$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $data->det_kmd_nama);
+				
+				// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+				$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+				$excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+				
+				$no++; // Tambah 1 setiap kali looping
+				$numrow++; // Tambah 1 setiap kali looping
+			}
+		
+		$excel->getActiveSheet()->getStyle('A1:O50')->applyFromArray($style_col);
+		
+
+		// Proses file excel
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header("Content-Disposition: attachment; filename=$namafile.xlsx"); // Set nama file excel nya
+		header('Cache-Control: max-age=0');
+
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+		$write->save('php://output');
 	}
 
 }
